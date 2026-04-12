@@ -1,121 +1,76 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState, useEffect } from 'react';
+import HeroView from './features/hero-view/HeroView';
+import NavMenu from './features/nav-menu/NavMenu';
+import TeamView from './features/team-view/TeamView';
+import BlockQuote from './features/block-quote/BlockQuote';
+import MethodView from './features/method-view/MethodView';
+import LocationView from './features/location-view/LocationView';
+import ContactView from './features/contact-view/ContactView';
+import navConfig from './features/nav-menu/config/navConfig';
+import { UiLabel as Ui } from './config/constants';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && menuOpen) {
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [menuOpen]);
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
+    <div className='app-root'>
+      <NavMenu
+        navConfig={navConfig}
+        menuOpen={menuOpen}
+        toggleMenu={toggleMenu}
+      />
+
+      <div className='hero-view__menu-wrapper'>
         <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
+          className={`button button--menu ${menuOpen ? 'button--menu--hide' : ''}`}
+          onClick={toggleMenu}
+          aria-label={Ui.SHOW_MENU}>
+          {Ui.SHOW_MENU}
         </button>
-      </section>
+      </div>
 
-      <div className="ticks"></div>
+      <main
+        className={`app-pusher ${menuOpen ? 'app-pusher--open' : ''}`}
+        onClick={menuOpen ? toggleMenu : undefined}>
+        {menuOpen && <div className='app-pusher__click-guard' />}
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+        <div id='main'>
+          <HeroView />
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        <div id='team' className='grouping grouping--our-team'>
+          <BlockQuote sourceKey='angelou-maya' />
+          <TeamView />
+        </div>
+
+        <div id='methods' className='grouping grouping--methods'>
+          <BlockQuote sourceKey='vaid-menon-alok' />
+          <MethodView />
+        </div>
+
+        <div id='contact' className='grouping grouping--contact'>
+          <BlockQuote sourceKey='osaka-naomi' />
+          <ContactView />
+        </div>
+
+        <div id='location' className='grouping grouping--location'>
+          <BlockQuote sourceKey='lair-jess' />
+          <LocationView />
+        </div>
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;

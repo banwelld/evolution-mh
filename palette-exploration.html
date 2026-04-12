@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolution MHS | Palette Exploration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fdfcfb;
+            --text: #2d2a26;
+            --border: #e2e1df;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 4rem 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .intro {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #6d6a66;
+        }
+
+        section {
+            margin-bottom: 8rem;
+        }
+
+        .section-head {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 4rem;
+        }
+
+        .palette-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .palette-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            margin: 0 0 1rem 0;
+            color: var(--text);
+        }
+
+        .ethos {
+            font-size: 0.9rem;
+            color: #6d6a66;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .swatches {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .swatch {
+            flex: 1;
+            height: 100px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .swatch:hover {
+            transform: scale(1.02);
+        }
+
+        .swatch::after {
+            content: attr(data-hsl);
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            font-weight: 400;
+            color: #9d9a96;
+            opacity: 0.8;
+        }
+
+        /* Morning Embers */
+        .color-me-1 { background: hsl(15, 45%, 45%); color: #fff; }
+        .color-me-2 { background: hsl(40, 40%, 65%); }
+        .color-me-3 { background: hsl(15, 15%, 15%); color: #fff; }
+
+        /* Earth & Hearth */
+        .color-eh-1 { background: hsl(5, 30%, 35%); color: #fff; }
+        .color-eh-2 { background: hsl(30, 35%, 85%); }
+        .color-eh-3 { background: hsl(20, 20%, 10%); color: #fff; }
+
+        /* The Inner Glow */
+        .color-ig-1 { background: hsl(40, 50%, 75%); }
+        .color-ig-2 { background: hsl(220, 10%, 12%); color: #fff; }
+
+        /* Ethereal Ash */
+        .color-ea-1 { background: hsl(20, 5%, 55%); color: #fff; }
+        .color-ea-2 { background: hsl(350, 25%, 25%); color: #fff; }
+
+        /* The Veridian Phoenix */
+        .color-vp-1 { background: hsl(170, 40%, 20%); color: #fff; }
+        .color-vp-2 { background: hsl(25, 50%, 55%); color: #fff; }
+        .color-vp-3 { background: hsl(40, 30%, 95%); }
+
+        .tag {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background: #f0efed;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .surprise-badge {
+            background: #2d2a26;
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 600px) {
+            .palette-grid { grid-template-columns: 1fr; }
+            body { padding: 2rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Evolving the Warmth</h1>
+        <p class="intro">Exploring trauma-informed color strategies for Evolution MHS. Moving from <em>heat</em> to <em>radiance</em>—preserving the Phoenix spirit while prioritizing nervous system regulation.</p>
+    </header>
+
+    <section>
+        <div class="section-head">3-Color Schemes</div>
+        <div class="palette-grid">
+            <div class="palette-card">
+                <div class="tag">Regulatory Warmth</div>
+                <h2 class="palette-title">Morning Embers</h2>
+                <p class="ethos">Replaces "Aggressive Red" with <strong>Burnt Sienna</strong> and "Jarring Gold" with <strong>Dust Ochre</strong>. This scheme mimics the gentle warmth of a sunrise. It signals growth and optimism without the high-arousal intensity of fire.</p>
+                <div class="swatches">
+                    <div class="swatch color-me-1" data-hsl="hsl(15, 45%, 45%)">Brand 1</div>
+                    <div class="swatch color-me-2" data-hsl="hsl(40, 40%, 65%)">Brand 2</div>
+                    <div class="swatch color-me-3" data-hsl="hsl(15, 15%, 15%)">Contrast</div>
+                </div>
+            </div>
+
+            <div class="palette-card">
+                <div class="tag">Grounding & Stability</div>
+                <h2 class="palette-title">Earth & Hearth</h2>
+                <p class="ethos">Anchors the warmth in the soil. Uses <strong>Deep Clay</strong> and <strong>Warm Sand</strong>. This is "Safe warmth." It feels architectural, rooted, and permanent—ideal for establishing a sense of safety for those in high distress.</p>
+                <div class="swatches">
+                    <div class="swatch color-eh-1" data-hsl="hsl(5, 30%, 35%)">Brand 1</div>
+                    <div class="swatch color-eh-2" data-hsl="hsl(30, 35%, 85%)">Brand 2</div>
+                    <div class="swatch color-eh-3" data-hsl="hsl(20, 20%, 10%)">Contrast</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-head">2-Color Schemes</div>
+        <div class="palette-grid">
+            <div class="palette-card">
+                <div class="tag">Elegance & Center</div>
+                <h2 class="palette-title">The Inner Glow</h2>
+                <p class="ethos">Focuses purely on <strong>Soft Amber</strong> against an <strong>Obsidian</strong> contrast. It suggests a "Radiance" coming from within a safe, dark vessel. It is deeply sophisticated and minimizes sensory load by limiting the color story.</p>
+                <div class="swatches">
+                    <div class="swatch color-ig-1" data-hsl="hsl(40, 50%, 75%)">Brand 1</div>
+                    <div class="swatch color-ig-2" data-hsl="hsl(220, 10%, 12%)">Contrast</div>
+                </div>
+            </div>
+
+            <div class="palette-card">
+                <div class="tag">Calm & Resolution</div>
+                <h2 class="palette-title">Ethereal Ash</h2>
+                <p class="ethos">Inspired by the "Clean Slate" after the fire. Uses <strong>Warm Grey</strong> and <strong>Muted Wine</strong>. It suggests that the evolution has already happened and we are now in the space of peaceful resolution and wisdom.</p>
+                <div class="swatches">
+                    <div class="swatch color-ea-1" data-hsl="hsl(20, 5%, 55%)">Brand 1</div>
+                    <div class="swatch color-ea-2" data-hsl="hsl(350, 25%, 25%)">Contrast</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-head">The Surprise <span class="surprise-badge">Structural Pivot</span></div>
+        <div class="palette-grid">
+            <div class="palette-card" style="grid-column: 1 / -1;">
+                <div class="tag">Healing-First Architecture</div>
+                <h2 class="palette-title">The Veridian Phoenix</h2>
+                <p class="ethos"><strong>The Ethos</strong>: What if the Phoenix's evolution is into a life-giving force rather than a burning one? We replace the Red (biological signal for danger/blood) with <strong>Deep Veridian Teal</strong> (biological signal for water/safety/life). We keep the warmth of the original vision through a rich <strong>Glowing Copper</strong> accent. It is the most "Clinical" of the sets while remaining high-end.</p>
+                <div class="swatches">
+                    <div class="swatch color-vp-1" data-hsl="hsl(170, 40%, 20%)">Veridian (Brand 1)</div>
+                    <div class="swatch color-vp-2" data-hsl="hsl(25, 50%, 55%)">Copper (Brand 2)</div>
+                    <div class="swatch color-vp-3" data-hsl="hsl(40, 30%, 95%)">Parchment (Contrast)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; margin-top: 4rem; font-size: 0.8rem; color: #9d9a96;">
+        Evolution Mental Health Services | Palette Exploration Exhibit
+    </footer>
+</div>
+
+</body>
+</html>
