@@ -33,7 +33,7 @@ export default function LocationDisplay({ locationMap, onDirectionClick }) {
         <div className='location-info__directions'>
           <Button
             label={label.DIRECTIONS_BUTTON}
-            modifiers={['brand2']}
+            modifiers={['brand1']}
             onClick={onDirectionClick}
           />
         </div>

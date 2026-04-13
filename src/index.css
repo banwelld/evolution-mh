@@ -97,7 +97,7 @@ offwhite-light: #fdf7ec;
   box-sizing: border-box;
   line-height: 1;
   font-size: 18px;
-  color: var(--color-contrast-dk);
+  color: var(--color-contrast-xdk);
 }
 
 img {
@@ -112,6 +112,7 @@ img {
 html {
   overflow-y: scroll;
   scroll-behavior: smooth;
+  overscroll-behavior: none;
 }
 
 body {
@@ -921,7 +922,8 @@ button.contrast:hover {
 */
 .hero-view__logo {
   height: var(--height-logo);
-  filter: drop-shadow(black 1px 1px 1px);
+  width: auto;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
 }
 
 .section__frame--hero-view {
@@ -940,42 +942,19 @@ button.contrast:hover {
   align-items: center;
 }
 
-.section__frame--hero-view::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.85);
-  z-index: 5;
-  pointer-events: none;
-  animation: roomIllumination 3s ease-in-out forwards;
-}
-
-@keyframes roomIllumination {
-  0% {
-    background-color: rgba(0, 0, 0, 0.9);
-  }
-  50% {
-    background-color: rgba(0, 0, 0, 0.9);
-  }
-  100% {
-    background-color: rgba(0, 0, 0, 0);
-  }
-}
-
 .hero-view__image--background {
   position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top;
+  top: 0;
+  left: 0;
   z-index: 0;
-  transform: translateY(var(--parallax-offset, 0px));
+  transform: translateY(var(--parallax-offset, 0));
   will-change: transform;
 }
 
 .hero-view__content-wrapper {
-  position: relative;
   grid-column: 1 / 2;
   grid-row: 1 / -1;
   align-self: stretch;
@@ -983,7 +962,7 @@ button.contrast:hover {
   grid-template-columns: 1fr;
   grid-template-rows: subgrid;
   z-index: 10;
-  transform: translateY(var(--parallax-offset, 0px));
+  transform: translateY(var(--parallax-offset, 0));
   will-change: transform;
 }
 
@@ -1036,7 +1015,6 @@ button.contrast:hover {
   color: var(--color-brand1);
   font-weight: 700;
   font-variation-settings: 'wght' 700;
-  animation: c2aIllumination 3s ease-out;
 
   text-shadow:
     0px 0px 2px var(--color-contrast),
@@ -1073,64 +1051,14 @@ button.contrast:hover {
   }
 }
 
-@keyframes c2aIllumination {
-  0% {
-    filter: brightness(0);
-    text-shadow: none;
-  }
-  40% {
-    filter: brightness(1);
-    text-shadow: none;
-  }
-  60% {
-    filter: brightness(1);
-    text-shadow:
-      0px 0px 10px var(--color-brand1),
-      0px 2px 5px var(--color-brand2),
-      0px -10px 20px var(--color-brand1),
-      0px 20px 40px var(--color-brand2);
-  }
-  80% {
-    filter: brightness(1);
-    text-shadow:
-      0px 0px 2px var(--color-contrast),
-      0px 2px 5px rgba(0, 0, 0, 0.8),
-      0px 10px 20px rgba(0, 0, 0, 0.5),
-      0px 20px 40px rgba(0, 0, 0, 0.4),
-      0px 40px 80px rgba(0, 0, 0, 0.3);
-  }
-  100% {
-    filter: brightness(1);
-    text-shadow:
-      0px 0px 2px var(--color-contrast),
-      0px 2px 5px rgba(0, 0, 0, 0.8),
-      0px 10px 20px rgba(0, 0, 0, 0.5),
-      0px 20px 40px rgba(0, 0, 0, 0.4),
-      0px 40px 80px rgba(0, 0, 0, 0.3);
-  }
-}
 
-.section__container--option-buttons {
-  animation: uiFadeIn 3s ease-in-out forwards;
-}
 
 .hero-view__logo {
-  animation: uiFadeIn 3s ease-in-out forwards;
   filter: drop-shadow(0px 0px 2px var(--color-contrast))
     drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.8))
     drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.5))
     drop-shadow(0px 20px 40px rgba(0, 0, 0, 0.4))
     drop-shadow(0px 40px 80px rgba(0, 0, 0, 0.3));
-}
-
-@keyframes uiFadeIn {
-  0%,
-  50% {
-    opacity: 0.08;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 .section__container--option-buttons {
@@ -1365,12 +1293,15 @@ button.contrast:hover {
 }
 
 .button--contact-form {
+  padding: 0.5rem 2rem;
+  border-radius: 8px;
+  background: var(--color-brand1);
   color: var(--color-brand2);
-  background: var(--color-contrast);
-  font-size: 1rem;
+  border: 1px solid var(--color-brand1);
+  font-size: 0.9rem;
   font-weight: 600;
-  padding: 0.5rem 1.5ch;
-  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 
   &:hover {
@@ -1647,7 +1578,7 @@ button.contrast:hover {
 }
 
 .form--contact {
-  margin: 0 auto 0;
+  margin: 2rem auto 0;
   width: 100%;
   max-width: 600px;
   display: flex;
@@ -1667,7 +1598,7 @@ button.contrast:hover {
 .form__label {
   font-family: var(--font-utility);
   font-size: var(--font-size-text);
-  color: var(--color-contrast);
+  color: var(--color-contrast-xdk);
   font-weight: 500;
 }
 
@@ -1867,12 +1798,12 @@ button.contrast:hover {
   font-family: var(--font-utility);
   font-size: 1rem;
   line-height: 1.6;
-  color: var(--color-contrast);
+  color: var(--color-contrast-xdk);
   margin: 0;
 }
 
 .location-info__link {
-  color: var(--color-contrast);
+  color: var(--color-contrast-xdk);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;

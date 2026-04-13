@@ -63,7 +63,7 @@ function FullscreenControl() {
               height='18'
               viewBox='0 0 24 24'
               fill='none'
-              stroke='currentColor'
+              stroke='var(--color-offwhite)'
               strokeWidth='2.5'
               strokeLinecap='round'
               strokeLinejoin='round'>
