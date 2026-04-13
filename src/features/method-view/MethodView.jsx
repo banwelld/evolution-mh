@@ -20,10 +20,16 @@ const rawContent = import.meta.glob('./content/*.md', {
   import: 'default',
 });
 
+const methodImages = import.meta.glob('./assets/*.webp', {
+  eager: true,
+  import: 'default',
+});
+
 export default function MethodView() {
   const [selectedContent, setSelectedContent] = useState(Method.THERAPY);
 
   const markdownText = rawContent[`./content/${selectedContent}.md`];
+  const methodViewImage = methodImages[`./assets/${selectedContent}.webp`];
 
   return (
     <Frame sectionName='method-view'>
@@ -38,6 +44,13 @@ export default function MethodView() {
 
       <article className='content content--single'>
         <Frame sectionName='details'>
+          <div className='content__image-container'>
+            <img
+              className='content__image'
+              src={methodViewImage}
+              alt={selectedContent}
+            />
+          </div>
           <ContentDisplay markdownText={markdownText} />
         </Frame>
       </article>

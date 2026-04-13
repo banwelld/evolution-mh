@@ -7,6 +7,7 @@ import MethodView from './features/method-view/MethodView';
 import LocationView from './features/location-view/LocationView';
 import ContactView from './features/contact-view/ContactView';
 import navConfig from './features/nav-menu/config/navConfig';
+import Footer from './features/footer/Footer';
 import { UiLabel as Ui } from './config/constants';
 
 import { ThemeProvider } from './features/palette-explorer/context/ThemeContext';
@@ -73,6 +74,8 @@ function App() {
             <BlockQuote sourceKey='lair-jess' />
             <LocationView />
           </div>
+
+          <Footer />
         </main>
       </div>
     </ThemeProvider>

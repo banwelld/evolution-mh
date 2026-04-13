@@ -60,7 +60,7 @@ export default function TeamView() {
               <img
                 className='content__image'
                 src={teamViewImage}
-                alt={label.BACKGROUND_TEAMVIEW}
+                alt={teamData[selectedContent]}
               />
             </div>
           )}

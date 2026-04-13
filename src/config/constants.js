@@ -13,6 +13,7 @@ export const AriaLabel = Object.freeze({
 export const UiLabel = Object.freeze({
   EVOLUTION_MHS_FULL: 'Evolution Mental Health Services',
   EVOLUTION_MHS: 'Evolution MHS',
+  SITE_ATTRIBUTION: 'Site designed and created by Dave Banwell (2026)',
   CALL_TO_ACTION: {
     LINE_1: 'your',
     LINE_2: 'evolution',

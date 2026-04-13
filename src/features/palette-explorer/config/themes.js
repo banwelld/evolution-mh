@@ -12,7 +12,7 @@ export const themes = {
     colors: {
       brand1: '10, 45%, 45%',
       brand2: '40, 40%, 65%',
-      contrast: '15, 25%, 15%',
+      contrast: '0, 40%, 15%',
     },
   },
   'earth-hearth': {
@@ -20,7 +20,7 @@ export const themes = {
     colors: {
       brand1: '5, 30%, 35%',
       brand2: '30, 95%, 85%',
-      contrast: '20, 20%, 10%',
+      contrast: '0, 40%, 15%',
     },
   },
   'inner-glow': {
@@ -28,7 +28,7 @@ export const themes = {
     colors: {
       brand1: '40, 70%, 85%',
       brand2: '40, 70%, 85%', // B1 override
-      contrast: '220, 10%, 12%',
+      contrast: '0, 40%, 15%',
     },
   },
   'veridian-phoenix': {

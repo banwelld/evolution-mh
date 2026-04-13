@@ -2,9 +2,10 @@ import { Frame } from '../../components/ui/Section';
 import LocationDisplay from './components/LocationDisplay';
 import LocationMap from './components/LocationMap';
 import { UiLabel as label } from '../../config/constants';
+import Loc from './config/locationInfo';
 
 const handleDirections = () => {
-  window.open(LocationInfo.DIRECTIONS_URL, '_blank', 'noopener,noreferrer');
+  window.open(Loc.DIRECTIONS_URL, '_blank', 'noopener,noreferrer');
 };
 
 export default function LocationView() {
