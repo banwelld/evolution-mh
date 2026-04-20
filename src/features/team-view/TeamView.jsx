@@ -19,6 +19,7 @@ const teamData = {
   'evolution-team': label.HEADING_TEAM_VIEW,
   'williams-elaine': 'Dr. Elaine Williams',
   'nadalin-alex': 'Dr. Alex Nadalin',
+  'barringer-sam': 'Samantha Barringer',
 };
 
 const teamMembers = Object.entries(teamData).map(([key, heading]) => ({
@@ -30,7 +31,9 @@ export default function TeamView() {
   const [selectedContent, setSelectedContent] = useState('evolution-team');
 
   const markdownText = rawContent[`./content/${selectedContent}.md`];
-  const teamViewImage = teamImages[`./assets/${selectedContent}.webp`];
+  const teamViewImage = teamImages[`./assets/${selectedContent}.webp`]
+    ? teamImages[`./assets/${selectedContent}.webp`]
+    : teamImages['./assets/coming-soon.webp'];
 
   return (
     <Frame sectionName='team-view'>
