@@ -1,0 +1,102 @@
+.app-slider {
+  width: 100vw;
+  max-width: var(--max-app-width);
+  min-height: 100vh;
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  z-index: 10;
+  box-shadow: var(--shadow-sidebar);
+}
+
+.app-slider--open {
+  transform: translateX(300px);
+  cursor: pointer;
+}
+
+.profile-is-active .app-slider,
+.profile-is-active .app-slider__trigger,
+.profile-is-active .push-nav {
+  transform: translateX(-99vw);
+}
+
+.app-slider__trigger {
+  position: fixed;
+  top: 0;
+  left: var(--app-edge-boundary);
+  z-index: 999;
+  display: flex;
+  justify-content: flex-start;
+  padding: 3ch;
+  width: fit-content;
+  height: fit-content;
+  max-width: 300px;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.app-slider__click-guard {
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.push-nav {
+  position: fixed;
+  top: 0;
+  left: var(--app-edge-boundary);
+  width: min(300px, 80vw);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-contrast-xdk);
+  box-shadow: var(--shadow-menu);
+  z-index: 1;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.push-nav .list {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.push-nav .list-item {
+  display: flex;
+  justify-content: center;
+  flex: 0;
+  width: 100%;
+  padding: 0.5rem 0;
+  text-align: center;
+  border: solid 1px transparent;
+  transition: all 0.15s ease;
+
+  &:has(.button--navigation:hover) {
+    border-top: solid 1px
+      color-mix(in hsl, var(--color-offwhite-lt) 50%, transparent);
+    border-bottom: solid 1px
+      color-mix(in hsl, var(--color-offwhite-lt) 50%, transparent);
+  }
+}
+
+.button--navigation {
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  color: var(--color-nav-button);
+  font-size: var(--font-size-nav);
+  font-weight: 500;
+  text-transform: capitalize;
+  transition: all 0.15s ease;
+
+  &:hover {
+    color: var(--color-nav-button-hover);
+  }
+}

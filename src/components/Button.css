@@ -1,0 +1,131 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  text-transform: capitalize;
+  padding: 0.6rem 1.75rem;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-family: var(--font-utility);
+  font-size: 1rem;
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--color-offwhite),
+    0 0 0 4px var(--color-brand1-dk),
+    0 0 10px 4px var(--color-brand1-dk);
+}
+
+.button:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.button--hero {
+  font-size: var(--font-size-emphasis);
+  padding: 0.8rem 1.5rem;
+  min-width: 35%;
+}
+
+/* Light buttons - default for all but hero section */
+.button--light {
+  background: var(--color-offwhite);
+  color: var(--color-brand1-xdk);
+  border: 1px solid var(--color-brand1-xdk);
+
+  &:hover {
+    background: var(--color-brand1-xdk);
+    color: var(--color-offwhite-lt);
+    border: 1px solid transparent;
+  }
+}
+
+.button--card {
+  width: 80%;
+  font-size: var(--font-size-emphasis);
+}
+
+/* Medium buttons - hero section only */
+.button--medium {
+  background: var(--color-brand1-xdk);
+  color: var(--color-offwhite);
+  border: 2px solid var(--color-brand1-dk);
+
+  &:hover {
+    background: var(--color-brand1-xdk);
+    color: var(--color-offwhite-lt);
+    border: 2px solid var(--color-brand1);
+  }
+}
+/* Dark buttons - hero section plus slider controls */
+.button--dark {
+  background: var(--color-contrast-dk);
+  color: var(--color-brand1-lt);
+  border: 2px solid var(--color-brand1-dk);
+
+  &:hover {
+    background: var(--color-contrast-dk);
+    color: var(--color-offwhite);
+    border: 2px solid var(--color-brand1);
+  }
+}
+
+.button--menu {
+  z-index: 9999;
+  pointer-events: auto;
+  padding: 0.5rem;
+  min-width: 36px;
+  min-height: 36px;
+}
+
+.button--menu:hover {
+  padding: 0.5rem 1.5ch;
+}
+
+.menu-button__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-offwhite-lt);
+  flex-shrink: 0;
+}
+
+.menu-button__icon {
+  color: var(--color-offwhite-lt);
+  stroke: var(--color-offwhite-lt);
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform-origin: center;
+}
+
+.button--menu:hover .menu-button__icon {
+  width: 0;
+  opacity: 0;
+  transform: rotate(-180deg) scale(0);
+}
+
+.menu-button__text {
+  color: var(--color-offwhite-lt);
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.button--menu:hover .menu-button__text {
+  max-width: 200px;
+  opacity: 1;
+}
+
+.button--menu.button--hidden {
+  opacity: 0;
+  pointer-events: none;
+}

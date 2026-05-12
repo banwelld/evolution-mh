@@ -1,0 +1,64 @@
+/* Quotes & Transitions */
+.container--quote {
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  gap: var(--gap-editorial-quote);
+}
+
+.quote {
+  display: flex;
+  flex-direction: column;
+  max-width: 70ch;
+}
+
+.image__container {
+  position: relative;
+}
+
+.section-divider {
+  position: relative;
+  display: flex;
+  background: var(--color-contrast-dk);
+  width: 100%;
+  padding: var(--padding-section-divider);
+  gap: var(--gap-editorial-divider);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: var(--shadow-quote-block);
+
+  .text--paragraph {
+    color: var(--color-brand1);
+    line-height: 1.2;
+    font-family: var(--font-hero);
+    font-size: var(--font-size-section-divider);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+}
+
+figcaption {
+  display: block;
+  width: 100%;
+  text-align: right;
+  color: var(--color-brand1);
+  font-family: var(--font-utility);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .section-divider {
+    padding: 40px 0;
+
+    .quote {
+      max-width: 90vw;
+    }
+  }
+}

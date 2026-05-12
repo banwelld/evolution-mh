@@ -1,45 +1,56 @@
-import { Frame, Container } from '../../../components/ui/Section';
-import heroImage from '../assets/hero-image.jpg';
-import logo from '../assets/evolution-mh-logo.png';
-import { AriaLabel as Aria, UiLabel as Ui } from '../../../config/constants';
+import '../HeroView.css';
+import { useState, useEffect } from 'react';
+import { SectionFrame, ContainerFrame } from '../../../components/Section';
+import heroImage from '../assets/hero-image.webp';
+import logo from '../assets/evolution-mhs-logo.webp';
 
-export default function HeroLayout({
-  heroImageRef,
-  contentRef,
-  heroViewControls,
-}) {
+const CALL_TO_ACTION = ['your', 'evolution', 'starts here'];
+const HERO_IMAGE_ALT_TEXT =
+  'A young woman, pictured from the shoulders up, looks directly ahead with confidence and resolve from the corner of a dim room, warmly lit from the left.';
+const LOGO_ALT_TEXT = 'The Evolution Mental Health Services logo.';
+
+export default function HeroLayout({ stateItems, heroViewControls }) {
+  const { heroImageRef, contentRef, isMobile } = stateItems;
+
+  const callToAction = (
+    <ContainerFrame modifier='call-to-action'>
+      <h1
+        className='call-to-action__wrapper'
+        aria-label={CALL_TO_ACTION.join(' ')}>
+        {CALL_TO_ACTION.map((line, index) => (
+          <span
+            key={index}
+            className={`call-to-action ${index % 2 === 0 ? 'call-to-action--sans' : ''}`}>
+            {line}
+          </span>
+        ))}
+      </h1>
+    </ContainerFrame>
+  );
+
   return (
-    <Frame sectionName='hero-view'>
-      <img
-        src={heroImage}
-        className='hero-view__image--background'
-        ref={heroImageRef}
-        alt={Aria.HERO_IMAGE}
-      />
+    <SectionFrame modifier='hero-view'>
+      <ContainerFrame modifier='hero-image'>
+        {isMobile && callToAction}
+        <img
+          src={heroImage}
+          className='hero-view__image--background'
+          ref={heroImageRef}
+          alt={HERO_IMAGE_ALT_TEXT}
+        />
+      </ContainerFrame>
 
-      <div className='hero-view__content-wrapper' ref={contentRef}>
-        <Container
-          containerName='evolution-mh-logo'
-          aria-label={Aria.EVOLUTION_LOGO}>
-          <img className='hero-view__logo' src={logo} alt={Aria.HEADER_LOGO} />
-        </Container>
+      <ContainerFrame modifier='hero-content' ref={contentRef}>
+        <ContainerFrame modifier='evolution-mhs-logo'>
+          <img className='hero-view__logo' src={logo} alt={LOGO_ALT_TEXT} />
+        </ContainerFrame>
 
-        <Container
-          containerName='call-to-action'
-          aria-label={Aria.CALL_TO_ACTION}>
-          <h2 className='call-to-action__wrapper'>
-            <span className='call-to-action call-to-action--sans'>
-              {Ui.CALL_TO_ACTION.LINE_1}
-            </span>
-            <span className='call-to-action'>{Ui.CALL_TO_ACTION.LINE_2}</span>
-            <span className='call-to-action call-to-action--sans'>
-              {Ui.CALL_TO_ACTION.LINE_3}
-            </span>
-          </h2>
-        </Container>
+        {!isMobile && callToAction}
 
-        <Container containerName='option-buttons'>{heroViewControls}</Container>
-      </div>
-    </Frame>
+        <ContainerFrame modifier='option-buttons'>
+          {heroViewControls}
+        </ContainerFrame>
+      </ContainerFrame>
+    </SectionFrame>
   );
 }

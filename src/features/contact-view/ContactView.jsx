@@ -1,15 +1,17 @@
-import { Frame } from '../../components/ui/Section';
-import { UiLabel as label, UiText as text } from '../../config/constants';
+import { SectionFrame } from '../../components/Section';
 import ContactForm from './components/ContactForm';
+
+const SECTION_TITLE = 'Get in Touch';
+const DOMAIN = 'contact-view';
+
+const INTRO_MESSAGE = `We look forward to connecting with you. Please reach out with 
+any questions or to schedule a consultation.`;
 
 export default function ContactView() {
   return (
-    <Frame sectionName='contact-view'>
-      <div className='content content--contact'>
-        <h2 className='section-head'>{label.HEADING_CONTACT_VIEW}</h2>
-        <p className='content__paragraph'>{text.CONTACT_VIEW_MESSAGE}</p>
-        <ContactForm />
-      </div>
-    </Frame>
+    <SectionFrame modifier={DOMAIN} title={SECTION_TITLE}>
+      <p className='content__paragraph'>{INTRO_MESSAGE}</p>
+      <ContactForm />
+    </SectionFrame>
   );
 }

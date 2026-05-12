@@ -1,43 +1,54 @@
-import Button from '../../../components/ui/Button';
-import { UiLabel as label } from '../../../config/constants';
-import Loc from '../config/locationInfo';
+import './LocationDisplay.css';
+import { ContainerFrame } from '../../../components/Section';
+import Button from '../../../components/Button';
+import Index from '../config/locationIndex';
+
+// ui labels
+const ADDRESS_HEADING = 'Address';
+const CONTACT_HEADING = 'Contact Information';
+const DIRECTIONS_BUTTON_LABEL = 'Get Directions';
 
 export default function LocationDisplay({ locationMap, onDirectionClick }) {
+  const formattedPhone = Index.PHONE.replace(
+    /(\d{3})(\d{3})(\d{4})/,
+    '($1) $2-$3',
+  );
+
   return (
-    <div className='content content--location location-info'>
-      <div className='location-info__map-container'>{locationMap}</div>
+    <ContainerFrame modifier='location'>
+      <ContainerFrame modifier='location-map'>{locationMap}</ContainerFrame>
 
-      <div className='location-info__details'>
-        <div className='location-info__group'>
-          <h3 className='location-info__heading'>Our Address</h3>
-          <p className='location-info__text'>
-            {Loc.ADDRESS_LINE_1}
-            <br />
-            {Loc.ADDRESS_LINE_2}
+      <ContainerFrame modifier='location-details'>
+        <div className='wrapper wrapper--location'>
+          <h3 className='heading heading--location'>{ADDRESS_HEADING}</h3>
+          <p className='location location__address'>{Index.ADDRESS_LINE_1}</p>
+          <p className='location location__address'>{Index.ADDRESS_LINE_2}</p>
+        </div>
+
+        <div className='wrapper wrapper--location'>
+          <h3 className='heading heading--location'>{CONTACT_HEADING}</h3>
+          <p className='location location__phone-number'>
+            <a
+              href={`tel:+1${Index.PHONE}`}
+              className='link link--phone-number'>
+              {formattedPhone}
+            </a>
+          </p>
+          <p className='location location__email'>
+            <a href={`mailto:${Index.EMAIL}`} className='link link--email'>
+              {Index.EMAIL}
+            </a>
           </p>
         </div>
 
-        <div className='location-info__group'>
-          <h3 className='location-info__heading'>Contact</h3>
-          <p className='location-info__text'>
-            <a href={`tel:${Loc.PHONE_TEL}`} className='location-info__link'>
-              {Loc.PHONE}
-            </a>
-            <br />
-            <a href={`mailto:${Loc.EMAIL}`} className='location-info__link'>
-              {Loc.EMAIL}
-            </a>
-          </p>
-        </div>
-
-        <div className='location-info__directions'>
+        <div className='wrapper wrapper--directions-button'>
           <Button
-            label={label.DIRECTIONS_BUTTON}
-            modifiers={['brand1']}
+            label={DIRECTIONS_BUTTON_LABEL}
+            modifiers={['location', 'light']}
             onClick={onDirectionClick}
           />
         </div>
-      </div>
-    </div>
+      </ContainerFrame>
+    </ContainerFrame>
   );
 }

@@ -7,6 +7,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
     rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
 </head>
 
 <body>
@@ -19,19 +22,34 @@
             aria-label="Evolution Mental Health Logo, with stylized phoenix as the E in Evolution" />
         </div>
         <nav id="main-section-navbar">
-          <a class="nav-link semi-bold" href="#" aria-label="homepage link"
+          <a
+            class="button--navigation semi-bold"
+            href="#"
+            aria-label="homepage link"
             >main</a
           >
-          <a class="nav-link semi-bold" href="#" aria-label="our team link"
+          <a
+            class="button--navigation semi-bold"
+            href="#"
+            aria-label="our team link"
             >our team</a
           >
-          <a class="nav-link semi-bold" href="#" aria-label="our methods link"
-            >our methods</a
+          <a
+            class="button--navigation semi-bold"
+            href="#"
+            aria-label="our services link"
+            >our services</a
           >
-          <a class="nav-link semi-bold" href="#" aria-label="our location link"
+          <a
+            class="button--navigation semi-bold"
+            href="#"
+            aria-label="our location link"
             >our location</a
           >
-          <a class="nav-link semi-bold" href="#" aria-label="contact us link"
+          <a
+            class="button--navigation semi-bold"
+            href="#"
+            aria-label="contact us link"
             >contact us</a
           >
         </nav>
@@ -169,7 +187,7 @@
     </blockquote>
 
     <div id="our-approach" class="info-section">
-      <h1 class="section-head bold primary-font">Our Methods</h1>
+      <h1 class="section-head bold primary-font">Our Services</h1>
       <div class="card-grid">
         <div class="fade-in">
           <div
@@ -371,11 +389,11 @@
     const ourTeamFlyIn = document.querySelectorAll('#our-team .fly-in');
     const flyInTrigger = document.querySelector('#our-team .card-grid');
     let teamTriggered = false;
-    const ourMethodsFadeIn = document.querySelectorAll(
+    const ourServicesFadeIn = document.querySelectorAll(
       '#our-approach .fade-in',
     );
     const fadeInTrigger = document.querySelector('#our-approach .card-grid');
-    let methodsTriggered = false;
+    let servicesTriggered = false;
     const heroImage = document.querySelector('#main-section-grid-container');
     const actionCall = document.querySelector('#main-section-action');
 
@@ -422,16 +440,16 @@
       const headingRect = fadeInTrigger.getBoundingClientRect();
       const triggerPoint = headingRect.bottom - 300;
 
-      if (!methodsTriggered && triggerPoint < window.innerHeight) {
-        methodsTriggered = true;
+      if (!servicesTriggered && triggerPoint < window.innerHeight) {
+        servicesTriggered = true;
 
-        const randomCardIndexes = getRandomIndexes(ourMethodsFadeIn.length);
+        const randomCardIndexes = getRandomIndexes(ourServicesFadeIn.length);
 
         console.log(randomCardIndexes);
 
         randomCardIndexes.forEach((item, index) => {
           setTimeout(() => {
-            ourMethodsFadeIn[item].classList.add('active');
+            ourServicesFadeIn[item].classList.add('active');
           }, index * 200);
         });
       }

@@ -2,9 +2,11 @@ import { useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { UiLabel as label } from '../../../config/constants';
-import Loc from '../config/locationInfo';
-import Button from '../../../components/ui/Button';
+import Button from '../../../components/Button';
+import Index from '../config/locationIndex';
+
+const BRAND_SHORT = 'Evolution MHS';
+const TOGGLE_FULLSCREEN_LABEL = 'Toggle Fullscreen';
 
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -55,8 +57,8 @@ function FullscreenControl() {
         <Button
           onClick={toggleFullscreen}
           modifiers={['map-control', 'fullscreen']}
-          title='Toggle Fullscreen'
-          aria-label='Toggle Fullscreen'
+          title={TOGGLE_FULLSCREEN_LABEL}
+          aria-label={TOGGLE_FULLSCREEN_LABEL}
           label={
             <svg
               width='18'
@@ -77,7 +79,7 @@ function FullscreenControl() {
 }
 
 export default function LocationMap() {
-  const position = [Loc.LATITUDE, Loc.LONGITUDE];
+  const position = [Index.LATITUDE, Index.LONGITUDE];
 
   return (
     <div className='location-info__map-container'>
@@ -86,7 +88,7 @@ export default function LocationMap() {
         zoom={16}
         scrollWheelZoom={false}
         className='location-info__map'>
-        <TileLayer attribution={Loc.ATTRBUTION} url={Loc.MAP_URL} />
+        <TileLayer attribution={Index.ATTRBUTION} url={Index.MAP_URL} />
         <FullscreenControl />
         <Marker
           position={position}
@@ -98,9 +100,9 @@ export default function LocationMap() {
           <Popup>
             <div className='location-info__popup-content'>
               <div className='location-info__branded-name'>
-                <strong>{label.EVOLUTION_MHS}</strong>
+                <strong>{BRAND_SHORT}</strong>
               </div>
-              <div>{Loc.ADDRESS_LINE_1}</div>
+              <div>{Index.ADDRESS_LINE_1}</div>
             </div>
           </Popup>
         </Marker>

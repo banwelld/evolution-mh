@@ -1,21 +1,22 @@
-import { Frame } from '../../components/ui/Section';
+import { SectionFrame } from '../../components/Section';
 import LocationDisplay from './components/LocationDisplay';
 import LocationMap from './components/LocationMap';
-import { UiLabel as label } from '../../config/constants';
-import Loc from './config/locationInfo';
+import Index from './config/locationIndex';
+
+const SECTION_TITLE = 'our location';
+const DOMAIN = 'location-view';
 
 const handleDirections = () => {
-  window.open(Loc.DIRECTIONS_URL, '_blank', 'noopener,noreferrer');
+  window.open(Index.DIRECTIONS_URL, '_blank', 'noopener,noreferrer');
 };
 
 export default function LocationView() {
   return (
-    <Frame sectionName='location-view'>
-      <h2 className='section-head'>{label.HEADING_LOCATION_VIEW}</h2>
+    <SectionFrame modifier={DOMAIN} title={SECTION_TITLE}>
       <LocationDisplay
         locationMap={<LocationMap />}
         onDirectionClick={handleDirections}
       />
-    </Frame>
+    </SectionFrame>
   );
 }
