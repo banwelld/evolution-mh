@@ -1,16 +1,22 @@
-import '../HeroView.css';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { SectionFrame, ContainerFrame } from '../../../components/Section';
 import heroImage from '../assets/hero-image.webp';
 import logo from '../assets/evolution-mhs-logo.webp';
+import '../HeroView.css';
 
 const CALL_TO_ACTION = ['your', 'evolution', 'starts here'];
 const HERO_IMAGE_ALT_TEXT =
   'A young woman, pictured from the shoulders up, looks directly ahead with confidence and resolve from the corner of a dim room, warmly lit from the left.';
 const LOGO_ALT_TEXT = 'The Evolution Mental Health Services logo.';
 
-export default function HeroLayout({ stateItems, heroViewControls }) {
+export default function HeroLayout({
+  stateItems,
+  heroViewControls,
+  isComingSoon,
+}) {
   const { heroImageRef, contentRef, isMobile } = stateItems;
+
+  if (isComingSoon) CALL_TO_ACTION[2] = 'coming soon';
 
   const callToAction = (
     <ContainerFrame modifier='call-to-action'>
@@ -47,9 +53,11 @@ export default function HeroLayout({ stateItems, heroViewControls }) {
 
         {!isMobile && callToAction}
 
-        <ContainerFrame modifier='option-buttons'>
-          {heroViewControls}
-        </ContainerFrame>
+        {!isComingSoon && (
+          <ContainerFrame modifier='option-buttons'>
+            {heroViewControls}
+          </ContainerFrame>
+        )}
       </ContainerFrame>
     </SectionFrame>
   );

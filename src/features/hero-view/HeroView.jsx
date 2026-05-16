@@ -2,12 +2,13 @@ import { useState, useEffect, useRef } from 'react';
 import { useSmoothScroll } from '../../hooks/useSmoothScroll';
 import HeroLayout from './components/HeroLayout';
 import Button from '../../components/Button';
+
 const BTN_CONTACT_LABEL = 'start your journey';
 const BTN_CONTACT_ARIA = 'contact us to start your journey';
 const BTN_TEAM_LABEL = 'find out more';
 const BTN_TEAM_ARIA = 'advance to the next section to find out more about us';
 
-export default function HeroView() {
+export default function HeroView({ isComingSoon }) {
   const [isMobile, setIsMobile] = useState(
     () => window.matchMedia('(max-width: 640px)').matches,
   );
@@ -81,6 +82,10 @@ export default function HeroView() {
   };
 
   return (
-    <HeroLayout stateItems={stateItems} heroViewControls={heroViewControls} />
+    <HeroLayout
+      stateItems={stateItems}
+      heroViewControls={heroViewControls}
+      isComingSoon={isComingSoon}
+    />
   );
 }

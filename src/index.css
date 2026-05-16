@@ -135,6 +135,10 @@ body {
   overflow-x: hidden;
 }
 
+#root {
+  width: 100%;
+}
+
 img {
   display: block;
   user-select: none;
