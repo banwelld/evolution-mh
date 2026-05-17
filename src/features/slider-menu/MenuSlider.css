@@ -18,7 +18,7 @@
 .profile-is-active .app-slider,
 .profile-is-active .app-slider__trigger,
 .profile-is-active .push-nav {
-  transform: translateX(-99vw);
+  transform: translateX(calc(-0.95 * min(100vw, var(--max-app-width))));
 }
 
 .app-slider__trigger {

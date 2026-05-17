@@ -14,35 +14,39 @@ const rawContent = import.meta.glob(
   },
 );
 
-export default function MainView({ onSelectProfile }) {
+export default function MainView({ onSelectProfile, isComingSoon }) {
   const unpackRawText = (filename) =>
     rawContent[`../features/content-management/content/data/${filename}.md`];
 
   return (
     <>
       <div id='hero' className='view view--hero'>
-        <HeroView />
+        <HeroView isComingSoon={isComingSoon} />
       </div>
 
-      <div id='team' className='view view--team'>
-        <SectionTransition rawText={unpackRawText('quote-evolution-1')} />
-        <TeamView onSelectProfile={onSelectProfile} />
-      </div>
+      {!isComingSoon && (
+        <>
+          <div id='team' className='view view--team'>
+            <SectionTransition rawText={unpackRawText('quote-evolution-1')} />
+            <TeamView onSelectProfile={onSelectProfile} />
+          </div>
 
-      <div id='services' className='view view--services'>
-        <SectionTransition rawText={unpackRawText('quote-evolution-2')} />
-        <ServiceView onSelectProfile={onSelectProfile} />
-      </div>
+          <div id='services' className='view view--services'>
+            <SectionTransition rawText={unpackRawText('quote-evolution-2')} />
+            <ServiceView onSelectProfile={onSelectProfile} />
+          </div>
 
-      <div id='contact' className='view view--contact'>
-        <SectionTransition rawText={unpackRawText('quote-evolution-3')} />
-        <ContactView />
-      </div>
+          <div id='contact' className='view view--contact'>
+            <SectionTransition rawText={unpackRawText('quote-evolution-3')} />
+            <ContactView />
+          </div>
 
-      <div id='location' className='view view--location'>
-        <SectionTransition rawText={unpackRawText('quote-maya-angelou')} />
-        <LocationView />
-      </div>
+          <div id='location' className='view view--location'>
+            <SectionTransition rawText={unpackRawText('quote-maya-angelou')} />
+            <LocationView />
+          </div>
+        </>
+      )}
     </>
   );
 }

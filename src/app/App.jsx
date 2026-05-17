@@ -28,31 +28,29 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [menuOpen, profileView]);
 
-  if (isComingSoon)
-    return (
-      <div id='hero' className='view view--hero'>
-        <HeroView isComingSoon={isComingSoon} />
-      </div>
-    );
-
   return (
     <div className={`app-root ${profileView ? 'profile-is-active' : ''}`}>
-      <ArticleDeck
-        activeProfile={profileView}
-        onClose={() => setProfileView(null)}
-      />
-      <MenuSlider menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      {!isComingSoon && (
+        <ArticleDeck
+          activeProfile={profileView}
+          onClose={() => setProfileView(null)}
+        />
+      )}
+      {!isComingSoon && (
+        <MenuSlider menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      )}
       <main
         className={`app-slider ${menuOpen ? 'app-slider--open' : ''}`}
         onClick={menuOpen ? toggleMenu : undefined}>
-        {menuOpen && <div className='app-slider__click-guard' />}
+        {menuOpen && !isComingSoon && <div className='app-slider__click-guard' />}
         <AppLayout
           onToggleClick={toggleMenu}
           menuOpen={menuOpen}
           onSelectProfile={setProfileView}
+          isComingSoon={isComingSoon}
         />
       </main>
-      <Footer />
+      {!isComingSoon && <Footer />}
     </div>
   );
 }

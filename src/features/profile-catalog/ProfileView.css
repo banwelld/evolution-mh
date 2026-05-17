@@ -2,12 +2,25 @@
 .article-deck {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100vw;
+  left: var(--app-edge-boundary);
+  width: 95vw;
+  max-width: calc(var(--max-app-width) * 0.95);
+  margin-left: calc(min(100vw, var(--max-app-width)) * 0.05);
   height: 100vh;
+  height: 100dvh;
   z-index: 1;
   overflow-y: auto;
   background-color: var(--color-offwhite-lt);
+  animation: slideInArticle 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInArticle {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 .article-deck__controls {
