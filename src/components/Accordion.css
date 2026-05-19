@@ -9,6 +9,7 @@
   font-size: var(--font-size-title);
   font-family: var(--font-hero);
   font-weight: 700;
+  text-align: center;
 }
 
 summary {

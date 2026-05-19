@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { SectionFrame, ContainerFrame } from '../../../components/Section';
 import heroImage from '../assets/hero-image.webp';
 import logo from '../assets/evolution-mhs-logo.webp';
@@ -16,14 +15,14 @@ export default function HeroLayout({
 }) {
   const { heroImageRef, contentRef, isMobile } = stateItems;
 
-  if (isComingSoon) CALL_TO_ACTION[2] = 'coming soon';
+  const heroText = isComingSoon ? ['', 'Coming Soon', ''] : CALL_TO_ACTION;
 
   const callToAction = (
     <ContainerFrame modifier='call-to-action'>
       <h1
         className='call-to-action__wrapper'
         aria-label={CALL_TO_ACTION.join(' ')}>
-        {CALL_TO_ACTION.map((line, index) => (
+        {heroText.map((line, index) => (
           <span
             key={index}
             className={`call-to-action ${index % 2 === 0 ? 'call-to-action--sans' : ''}`}>

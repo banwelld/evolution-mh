@@ -7,20 +7,12 @@
   max-width: calc(var(--max-app-width) * 0.95);
   margin-left: calc(min(100vw, var(--max-app-width)) * 0.05);
   height: 100vh;
-  height: 100dvh;
   z-index: 1;
-  overflow-y: auto;
   background-color: var(--color-offwhite-lt);
-  animation: slideInArticle 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes slideInArticle {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
+.profile-is-active .article-deck {
+  overflow-y: auto;
 }
 
 .article-deck__controls {
@@ -29,6 +21,14 @@
   left: var(--app-edge-boundary);
   z-index: 1000;
   padding: 3ch;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.profile-is-active .article-deck__controls {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* Generic Profile Catalog */

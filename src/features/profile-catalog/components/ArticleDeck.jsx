@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import ProfileView from '../ProfileView';
 import Button from '../../../components/Button';
 
@@ -5,7 +6,19 @@ const CLOSE_LABEL = 'Close';
 const ARIA_DECK_VIEW = 'Article Detail View';
 
 export default function ArticleDeck({ activeProfile, onClose }) {
-  if (!activeProfile) return null;
+  const [displayProfile, setDisplayProfile] = useState(activeProfile);
+
+  useEffect(() => {
+    if (activeProfile) {
+      setDisplayProfile(activeProfile);
+    } else if (displayProfile) {
+      // Keep in DOM for 1000ms to match the CSS transition out
+      const timer = setTimeout(() => setDisplayProfile(null), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [activeProfile, displayProfile]);
+
+  if (!displayProfile) return null;
 
   const animatedLabel = (
     <span className='menu-button__content'>
@@ -38,7 +51,7 @@ export default function ArticleDeck({ activeProfile, onClose }) {
         />
       </div>
       <aside className='article-deck' aria-label={ARIA_DECK_VIEW}>
-        <ProfileView data={activeProfile} domain={activeProfile.domain} />
+        <ProfileView data={displayProfile} domain={displayProfile.domain} />
       </aside>
     </>
   );

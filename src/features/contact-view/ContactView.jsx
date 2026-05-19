@@ -1,5 +1,8 @@
-import { SectionFrame } from '../../components/Section';
+import { SectionFrame, ContainerFrame } from '../../components/Section';
 import ContactForm from './components/ContactForm';
+import MarkdownDisplay from '../../components/MarkdownDisplay';
+import crisisSupport from './content/crisis-support.md?raw';
+import './ContactView.css';
 
 const SECTION_TITLE = 'Get in Touch';
 const DOMAIN = 'contact-view';
@@ -12,6 +15,9 @@ export default function ContactView() {
     <SectionFrame modifier={DOMAIN} title={SECTION_TITLE}>
       <p className='content__paragraph'>{INTRO_MESSAGE}</p>
       <ContactForm />
+      <ContainerFrame modifier='crisis-support'>
+        <MarkdownDisplay markdownText={crisisSupport} />
+      </ContainerFrame>
     </SectionFrame>
   );
 }

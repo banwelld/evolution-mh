@@ -9,6 +9,13 @@ export default function MarkdownDisplay({ markdownText }) {
 
   return (
     <ReactMarkdown
+      urlTransform={(value) => {
+        // Allow safe protocols (http, https, mailto, tel, sms) and relative paths/anchors
+        if (value.match(/^(https?|mailto|tel|sms):/i) || value.startsWith('/') || value.startsWith('#')) {
+          return value;
+        }
+        return '';
+      }}
       components={{
         h1: ({ node, ...props }) => (
           <h1 className='heading heading--1' {...props} />
@@ -35,6 +42,19 @@ export default function MarkdownDisplay({ markdownText }) {
         li: ({ node, ...props }) => (
           <li className='text--list-item' {...props} />
         ),
+        a: ({ node, href, children, ...props }) => {
+          const isExternal = href?.startsWith('http');
+          return (
+            <a
+              href={href}
+              className='text--link'
+              target={isExternal ? '_blank' : undefined}
+              rel={isExternal ? 'noopener noreferrer' : undefined}
+              {...props}>
+              {children}
+            </a>
+          );
+        },
       }}>
       {markdownText}
     </ReactMarkdown>
