@@ -1,9 +1,10 @@
 .section__container--crisis-support {
   max-width: var(--max-width-text);
   width: 100%;
-  margin: 3rem auto 0;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .section__container--crisis-support .heading--3 {
@@ -15,6 +16,7 @@
 }
 
 .section__container--crisis-support .heading--4 {
+  width: var(--max-width-text);
   font-family: var(--font-hero);
   font-size: var(--font-size-subtitle);
   color: var(--color-brand1-xdk);

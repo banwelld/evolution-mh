@@ -2,12 +2,9 @@ import './MenuSlider.css';
 import { useEffect } from 'react';
 import NavMenu from './NavMenu';
 import Button from '../../components/Button';
-import navConfig from './config/navConfig';
+import { siteConfig } from '../../config/siteConfig';
 
-const SHOW_MENU_LABEL = 'Show Menu';
-const CLOSE_MENU_LABEL = 'Close Menu';
-
-export default function MenuSlider({ menuOpen, setMenuOpen }) {
+export default function MenuSlider({ menuOpen, setMenuOpen, inert }) {
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   useEffect(() => {
@@ -17,6 +14,12 @@ export default function MenuSlider({ menuOpen, setMenuOpen }) {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [menuOpen]);
+
+  const dynamicNavConfig = siteConfig.sections.map((section) => ({
+    label: section.menuLabel,
+    modifier: section.type,
+    selector: section.type === 'hero' ? 'top' : `.view--${section.type}`,
+  }));
 
   const animatedLabel = (
     <span className='menu-button__content'>
@@ -31,27 +34,45 @@ export default function MenuSlider({ menuOpen, setMenuOpen }) {
         strokeLinecap='round'
         strokeLinejoin='round'
         aria-hidden='true'>
-        <line x1='0' y1='4' x2='24' y2='4'></line>
-        <line x1='0' y1='12' x2='24' y2='12'></line>
-        <line x1='0' y1='20' x2='24' y2='20'></line>
+        {menuOpen ? (
+          <>
+            <line x1='18' y1='6' x2='6' y2='18'></line>
+            <line x1='6' y1='6' x2='18' y2='18'></line>
+          </>
+        ) : (
+          <>
+            <line x1='0' y1='4' x2='24' y2='4'></line>
+            <line x1='0' y1='12' x2='24' y2='12'></line>
+            <line x1='0' y1='20' x2='24' y2='20'></line>
+          </>
+        )}
       </svg>
-      <span className='menu-button__text'>{SHOW_MENU_LABEL}</span>
+      <span className='menu-button__text'>
+        {menuOpen
+          ? siteConfig.global.ui.closeMenuLabel
+          : siteConfig.global.ui.showMenuLabel}
+      </span>
     </span>
   );
 
   return (
     <>
       <NavMenu
-        navConfig={navConfig}
+        navConfig={dynamicNavConfig}
         menuOpen={menuOpen}
         onToggleClick={toggleMenu}
+        inert={inert ? true : undefined}
       />
-      <div className='app-slider__trigger'>
+      <div className='menu-slider__trigger' inert={inert ? true : undefined}>
         <Button
           label={animatedLabel}
-          aria-label={menuOpen ? CLOSE_MENU_LABEL : SHOW_MENU_LABEL}
+          aria-label={
+            menuOpen
+              ? siteConfig.global.ui.closeMenuLabel
+              : siteConfig.global.ui.showMenuLabel
+          }
           onClick={toggleMenu}
-          modifiers={['menu', 'dark', menuOpen ? 'hidden' : null]}
+          modifiers={['menu', 'dark']}
         />
       </div>
     </>

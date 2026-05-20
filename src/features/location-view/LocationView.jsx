@@ -1,22 +1,21 @@
 import { SectionFrame } from '../../components/Section';
 import LocationDisplay from './components/LocationDisplay';
 import LocationMap from './components/LocationMap';
-import Index from './config/locationIndex';
 
-const SECTION_TITLE = 'our location';
-const DOMAIN = 'location-view';
+export default function LocationView({ configProps, children }) {
+  const { domain, config } = configProps;
 
-const handleDirections = () => {
-  window.open(Index.DIRECTIONS_URL, '_blank', 'noopener,noreferrer');
-};
-
-export default function LocationView() {
+  const handleDirections = () => {
+    window.open(config.directionsUrl, '_blank', 'noopener,noreferrer');
+  };
   return (
-    <SectionFrame modifier={DOMAIN} title={SECTION_TITLE}>
+    <SectionFrame modifier={domain} title={config.sectionTitle}>
       <LocationDisplay
-        locationMap={<LocationMap />}
+        config={config}
+        locationMap={<LocationMap config={config} />}
         onDirectionClick={handleDirections}
       />
+      {children}
     </SectionFrame>
   );
 }

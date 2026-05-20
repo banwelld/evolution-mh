@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const ServiceSchema = z
+const ServiceSchema = z
   .object({
     title: z
       .string()
@@ -38,3 +38,5 @@ export const ServiceSchema = z
       contentType: 'service-article',
     };
   });
+
+export default ServiceSchema;

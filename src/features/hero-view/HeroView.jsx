@@ -3,12 +3,9 @@ import { useSmoothScroll } from '../../hooks/useSmoothScroll';
 import HeroLayout from './components/HeroLayout';
 import Button from '../../components/Button';
 
-const BTN_CONTACT_LABEL = 'start your journey';
-const BTN_CONTACT_ARIA = 'contact us to start your journey';
-const BTN_TEAM_LABEL = 'find out more';
-const BTN_TEAM_ARIA = 'advance to the next section to find out more about us';
+export default function HeroView({ configProps, isComingSoon }) {
+  const { config } = configProps;
 
-export default function HeroView({ isComingSoon }) {
   const [isMobile, setIsMobile] = useState(
     () => window.matchMedia('(max-width: 640px)').matches,
   );
@@ -62,15 +59,15 @@ export default function HeroView({ isComingSoon }) {
     <>
       <Button
         modifiers={['medium', 'hero']}
-        label={BTN_CONTACT_LABEL}
-        onClick={(e) => handleScroll(e, '#contact')}
-        aria-label={BTN_CONTACT_ARIA}
+        label={config.btnContactLabel}
+        onClick={(e) => handleScroll(e, '#contact-view')}
+        aria-label={config.btnContactAria}
       />
       <Button
         modifiers={['dark', 'hero']}
-        label={BTN_TEAM_LABEL}
-        onClick={(e) => handleScroll(e, '#team')}
-        aria-label={BTN_TEAM_ARIA}
+        label={config.btnTeamLabel}
+        onClick={(e) => handleScroll(e, '#team-view')}
+        aria-label={config.btnTeamAria}
       />
     </>
   );
@@ -79,13 +76,14 @@ export default function HeroView({ isComingSoon }) {
     isMobile,
     heroImageRef,
     contentRef,
+    isComingSoon,
   };
 
   return (
     <HeroLayout
       stateItems={stateItems}
       heroViewControls={heroViewControls}
-      isComingSoon={isComingSoon}
+      config={config}
     />
   );
 }

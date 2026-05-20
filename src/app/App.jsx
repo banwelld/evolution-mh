@@ -2,11 +2,10 @@ import { useState, useEffect } from 'react';
 import AppLayout from './AppLayout';
 import MenuSlider from '../features/slider-menu/MenuSlider';
 import Footer from '../components/Footer';
-import ArticleDeck from '../features/profile-catalog/components/ArticleDeck';
-import HeroView from '../features/hero-view/HeroView';
+import ArticleDeck from '../features/articles/components/ArticleDeck';
 
 export default function App() {
-  const [profileView, setProfileView] = useState(null);
+  const [articleView, setArticleView] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isComingSoon, setIsComingSoon] = useState(true);
 
@@ -20,37 +19,45 @@ export default function App() {
       }
 
       if (e.key === 'Escape') {
-        if (profileView) setProfileView(null);
+        if (articleView) setArticleView(null);
         else if (menuOpen) setMenuOpen(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [menuOpen, profileView]);
+  }, [menuOpen, articleView]);
 
   return (
-    <div className={`app-root ${profileView ? 'profile-is-active' : ''}`}>
+    <div className={`app-root ${articleView ? 'article-is-active' : ''}`}>
       {!isComingSoon && (
         <ArticleDeck
-          activeProfile={profileView}
-          onClose={() => setProfileView(null)}
+          activeArticle={articleView}
+          onClose={() => setArticleView(null)}
+          inert={menuOpen ? true : undefined}
         />
       )}
       {!isComingSoon && (
-        <MenuSlider menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <MenuSlider
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+          inert={!!articleView}
+        />
       )}
       <main
-        className={`app-slider ${menuOpen ? 'app-slider--open' : ''}`}
+        inert={articleView || menuOpen ? true : undefined}
+        className={`menu-slider ${menuOpen ? 'menu-slider--open' : ''}`}
         onClick={menuOpen ? toggleMenu : undefined}>
-        {menuOpen && !isComingSoon && <div className='app-slider__click-guard' />}
+        {menuOpen && !isComingSoon && (
+          <div className='menu-slider__click-guard' />
+        )}
         <AppLayout
           onToggleClick={toggleMenu}
           menuOpen={menuOpen}
-          onSelectProfile={setProfileView}
+          onSelectArticle={setArticleView}
           isComingSoon={isComingSoon}
         />
+        {!isComingSoon && <Footer inert={!!(articleView || menuOpen)} />}
       </main>
-      {!isComingSoon && <Footer />}
     </div>
   );
 }

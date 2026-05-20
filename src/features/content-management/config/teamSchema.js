@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const TeamSchema = z
+const TeamSchema = z
   .object({
     name: z
       .string()
@@ -51,3 +51,5 @@ export const TeamSchema = z
       contentType: 'team-article',
     };
   });
+
+export default TeamSchema;

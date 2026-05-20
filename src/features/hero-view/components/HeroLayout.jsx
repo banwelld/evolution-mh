@@ -3,25 +3,20 @@ import heroImage from '../assets/hero-image.webp';
 import logo from '../assets/evolution-mhs-logo.webp';
 import '../HeroView.css';
 
-const CALL_TO_ACTION = ['your', 'evolution', 'starts here'];
-const HERO_IMAGE_ALT_TEXT =
-  'A young woman, pictured from the shoulders up, looks directly ahead with confidence and resolve from the corner of a dim room, warmly lit from the left.';
-const LOGO_ALT_TEXT = 'The Evolution Mental Health Services logo.';
+import { siteConfig } from '../../../config/siteConfig';
 
-export default function HeroLayout({
-  stateItems,
-  heroViewControls,
-  isComingSoon,
-}) {
-  const { heroImageRef, contentRef, isMobile } = stateItems;
+export default function HeroLayout({ stateItems, heroViewControls, config }) {
+  const { heroImageRef, contentRef, isMobile, isComingSoon } = stateItems;
 
-  const heroText = isComingSoon ? ['', 'Coming Soon', ''] : CALL_TO_ACTION;
+  const heroText = isComingSoon
+    ? siteConfig.global.comingSoonText
+    : config.callToAction;
 
   const callToAction = (
     <ContainerFrame modifier='call-to-action'>
       <h1
         className='call-to-action__wrapper'
-        aria-label={CALL_TO_ACTION.join(' ')}>
+        aria-label={config.callToAction.join(' ')}>
         {heroText.map((line, index) => (
           <span
             key={index}
@@ -41,13 +36,17 @@ export default function HeroLayout({
           src={heroImage}
           className='hero-view__image--background'
           ref={heroImageRef}
-          alt={HERO_IMAGE_ALT_TEXT}
+          alt={config.imageAltText}
         />
       </ContainerFrame>
 
       <ContainerFrame modifier='hero-content' ref={contentRef}>
         <ContainerFrame modifier='evolution-mhs-logo'>
-          <img className='hero-view__logo' src={logo} alt={LOGO_ALT_TEXT} />
+          <img
+            className='hero-view__logo'
+            src={logo}
+            alt={config.logoAltText}
+          />
         </ContainerFrame>
 
         {!isMobile && callToAction}

@@ -4,11 +4,11 @@ import './Footer.css';
 const BRAND_FULL = 'Evolution Mental Health Services';
 const SITE_ATTRIBUTION = 'Custom site build by Dave Banwell (2026)';
 
-export default function Footer() {
+export default function Footer({ inert }) {
   const currentYear = 2026;
 
   return (
-    <footer className='footer'>
+    <footer inert={inert ? true : undefined} className='footer'>
       <div className='footer__content'>
         <div className='footer__copyright'>
           &copy; {currentYear} {BRAND_FULL}

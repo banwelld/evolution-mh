@@ -3,10 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import Button from '../../../components/Button';
-import Index from '../config/locationIndex';
-
-const BRAND_SHORT = 'Evolution MHS';
-const TOGGLE_FULLSCREEN_LABEL = 'Toggle Fullscreen';
+import { siteConfig } from '../../../config/siteConfig';
 
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -24,7 +21,7 @@ const DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-function FullscreenControl() {
+function FullscreenControl({ config }) {
   const map = useMap();
 
   useEffect(() => {
@@ -57,8 +54,8 @@ function FullscreenControl() {
         <Button
           onClick={toggleFullscreen}
           modifiers={['map-control', 'fullscreen']}
-          title={TOGGLE_FULLSCREEN_LABEL}
-          aria-label={TOGGLE_FULLSCREEN_LABEL}
+          title={config.toggleFullscreenLabel}
+          aria-label={config.toggleFullscreenLabel}
           label={
             <svg
               width='18'
@@ -78,8 +75,8 @@ function FullscreenControl() {
   );
 }
 
-export default function LocationMap() {
-  const position = [Index.LATITUDE, Index.LONGITUDE];
+export default function LocationMap({ config }) {
+  const position = [config.latitude, config.longitude];
 
   return (
     <div className='location-info__map-container'>
@@ -88,8 +85,8 @@ export default function LocationMap() {
         zoom={16}
         scrollWheelZoom={false}
         className='location-info__map'>
-        <TileLayer attribution={Index.ATTRBUTION} url={Index.MAP_URL} />
-        <FullscreenControl />
+        <TileLayer attribution={config.attribution} url={config.mapUrl} />
+        <FullscreenControl config={config} />
         <Marker
           position={position}
           eventHandlers={{
@@ -100,9 +97,9 @@ export default function LocationMap() {
           <Popup>
             <div className='location-info__popup-content'>
               <div className='location-info__branded-name'>
-                <strong>{BRAND_SHORT}</strong>
+                <strong>{siteConfig.global.brandShort}</strong>
               </div>
-              <div>{Index.ADDRESS_LINE_1}</div>
+              <div>{config.addressLine1}</div>
             </div>
           </Popup>
         </Marker>

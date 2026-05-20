@@ -1,24 +1,24 @@
 import { useState, useEffect } from 'react';
-import ProfileView from '../ProfileView';
+import ArticleView from '../ArticleView';
 import Button from '../../../components/Button';
 
 const CLOSE_LABEL = 'Close';
 const ARIA_DECK_VIEW = 'Article Detail View';
 
-export default function ArticleDeck({ activeProfile, onClose }) {
-  const [displayProfile, setDisplayProfile] = useState(activeProfile);
+export default function ArticleDeck({ activeArticle, onClose, inert }) {
+  const [displayArticle, setDisplayArticle] = useState(activeArticle);
 
   useEffect(() => {
-    if (activeProfile) {
-      setDisplayProfile(activeProfile);
-    } else if (displayProfile) {
+    if (activeArticle) {
+      setDisplayArticle(activeArticle);
+    } else if (displayArticle) {
       // Keep in DOM for 1000ms to match the CSS transition out
-      const timer = setTimeout(() => setDisplayProfile(null), 1000);
+      const timer = setTimeout(() => setDisplayArticle(null), 1000);
       return () => clearTimeout(timer);
     }
-  }, [activeProfile, displayProfile]);
+  }, [activeArticle, displayArticle]);
 
-  if (!displayProfile) return null;
+  if (!displayArticle) return null;
 
   const animatedLabel = (
     <span className='menu-button__content'>
@@ -42,7 +42,7 @@ export default function ArticleDeck({ activeProfile, onClose }) {
 
   return (
     <>
-      <div className='article-deck__controls'>
+      <div className='article-deck__controls' inert={inert ? true : undefined}>
         <Button
           label={animatedLabel}
           aria-label={CLOSE_LABEL}
@@ -50,8 +50,11 @@ export default function ArticleDeck({ activeProfile, onClose }) {
           modifiers={['menu', 'dark']}
         />
       </div>
-      <aside className='article-deck' aria-label={ARIA_DECK_VIEW}>
-        <ProfileView data={displayProfile} domain={displayProfile.domain} />
+      <aside
+        className='article-deck'
+        aria-label={ARIA_DECK_VIEW}
+        inert={inert ? true : undefined}>
+        <ArticleView data={displayArticle} domain={displayArticle.domain} />
       </aside>
     </>
   );

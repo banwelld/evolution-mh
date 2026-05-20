@@ -129,3 +129,19 @@
   opacity: 0;
   pointer-events: none;
 }
+
+/* Map Controls */
+.button--map-control {
+  background: var(--color-contrast-dk);
+  border-radius: 4px;
+  padding: 6px;
+  min-width: unset;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  pointer-events: auto;
+}
+
+.button--map-control:hover {
+  background: var(--color-brand1-dk);
+  border-color: var(--color-brand1-dk);
+}
+

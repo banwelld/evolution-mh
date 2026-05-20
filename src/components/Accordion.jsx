@@ -13,20 +13,25 @@ const arrow = (
   </svg>
 );
 
-export default function Accordion({ title, rawFrontmatter }) {
-  const faqData = parseFrontmatter(rawFrontmatter).metadata.questions;
+export default function Accordion({ rawFrontmatter }) {
+  const accordionData = parseFrontmatter(rawFrontmatter).metadata;
   return (
     <ContainerFrame modifier='accordion'>
-      <h3 className='heading heading--accordion'>{title}</h3>
+      <h3 className='heading heading--accordion'>{accordionData.title}</h3>
       <div className='wrapper wrapper--accordion'>
-        {faqData.map((item) => {
+        {accordionData.entries.map((entry) => {
           return (
-            <details key={item.q} name='segment' className='accordion__segment'>
+            <details
+              key={entry.summary}
+              name='segment'
+              className='accordion__segment'>
               <summary className='accordion__summary'>
                 <span className='accordion__summary--icon'>{arrow}</span>
-                <span className='accordion__summary--text'>{item.q}</span>
+                <span className='accordion__summary--text'>
+                  {entry.summary}
+                </span>
               </summary>
-              <p className='accordion__body text--paragraph'>{item.a}</p>
+              <p className='accordion__body text--paragraph'>{entry.details}</p>
             </details>
           );
         })}

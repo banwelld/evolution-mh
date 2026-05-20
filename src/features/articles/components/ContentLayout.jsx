@@ -8,11 +8,14 @@ export default function ContentLayout({ content }) {
           <img className='image' src={image} alt={imageDescription} />
         </div>
       )}
-      <h3 className='title title--page-view'>
+      <h3 className='title title--article'>
         <div className='title__first-line'>
           {title}
           {credentials && (
-            <span className='title__creds'>{'\u00A0'}{credentials}</span>
+            <span className='title__creds'>
+              {'\u00A0'}
+              {credentials}
+            </span>
           )}
         </div>
         {subtitle && (

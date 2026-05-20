@@ -1,9 +1,10 @@
+import { siteConfig } from '../config/siteConfig';
 import HeroView from '../features/hero-view/HeroView';
-import TeamView from '../features/profile-catalog/TeamView';
+import CatalogView from '../features/articles/CatalogView';
 import SectionTransition from '../features/section-transition/SectionTransition';
-import ServiceView from '../features/profile-catalog/ServiceView';
 import LocationView from '../features/location-view/LocationView';
 import ContactView from '../features/contact-view/ContactView';
+import Accordion from '../components/Accordion';
 
 const rawContent = import.meta.glob(
   '../features/content-management/content/data/quote-*.md',
@@ -14,39 +15,64 @@ const rawContent = import.meta.glob(
   },
 );
 
-export default function MainView({ onSelectProfile, isComingSoon }) {
+const rawFaqs = import.meta.glob(
+  '../features/content-management/content/data/faq-*.md',
+  {
+    query: '?raw',
+    eager: true,
+    import: 'default',
+  },
+);
+
+export default function AppLayout({ onSelectArticle, isComingSoon }) {
   const unpackRawText = (filename) =>
     rawContent[`../features/content-management/content/data/${filename}.md`];
 
+  const unpackRawFaq = (filename) =>
+    rawFaqs[`../features/content-management/content/data/${filename}.md`];
+
+  const componentMap = {
+    hero: HeroView,
+    team: CatalogView,
+    service: CatalogView,
+    contact: ContactView,
+    location: LocationView,
+  };
+
   return (
     <>
-      <div id='hero' className='view view--hero'>
-        <HeroView isComingSoon={isComingSoon} />
-      </div>
+      {siteConfig.sections.map((section) => {
+        const Component = componentMap[section.type];
+        if (!Component) return null;
 
-      {!isComingSoon && (
-        <>
-          <div id='team' className='view view--team'>
-            <SectionTransition rawText={unpackRawText('quote-evolution-1')} />
-            <TeamView onSelectProfile={onSelectProfile} />
-          </div>
+        const isHeroSection = section.type === 'hero';
+        if (isComingSoon && !isHeroSection) return null;
 
-          <div id='services' className='view view--services'>
-            <SectionTransition rawText={unpackRawText('quote-evolution-2')} />
-            <ServiceView onSelectProfile={onSelectProfile} />
-          </div>
+        const configProps = {
+          config: section.config,
+          sectionType: section.type,
+          domain: section.id,
+        };
 
-          <div id='contact' className='view view--contact'>
-            <SectionTransition rawText={unpackRawText('quote-evolution-3')} />
-            <ContactView />
+        return (
+          <div
+            key={section.id}
+            id={section.id}
+            className={`view view--${section.type}`}>
+            {section.quoteFile && !isHeroSection && (
+              <SectionTransition rawText={unpackRawText(section.quoteFile)} />
+            )}
+            <Component
+              configProps={configProps}
+              isComingSoon={isComingSoon}
+              onSelectArticle={onSelectArticle}>
+              {section.faqFile && !isHeroSection && (
+                <Accordion rawFrontmatter={unpackRawFaq(section.faqFile)} />
+              )}
+            </Component>
           </div>
-
-          <div id='location' className='view view--location'>
-            <SectionTransition rawText={unpackRawText('quote-maya-angelou')} />
-            <LocationView />
-          </div>
-        </>
-      )}
+        );
+      })}
     </>
   );
 }
