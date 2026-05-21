@@ -10,6 +10,7 @@ export const siteConfig = {
       closeLabel: 'Close',
       showMenuLabel: 'Show Menu',
       closeMenuLabel: 'Close Menu',
+      closeArticleLabel: 'Close Article',
       ariaDeckView: 'Article Detail View',
       ariaCatalogList: 'Options list',
     },

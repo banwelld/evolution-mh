@@ -1,15 +1,17 @@
 ### Crisis Services
 
+If you or someone you care about is in crisis, support is available.
+
 **Please note that Evolution Mental Health Services does not offer crisis services, and our emails are not monitored for crisis situations.**
 
-**If you are experiencing a mental health emergency or are in immediate danger, please call 911 or go to your nearest emergency department.**
+If you are experiencing a mental health emergency or are in immediate danger, please **[Call 911](tel:911)** or go to your nearest emergency department.
 
-For urgent but not imminent mental health needs, the following are available options:
+For urgent but not imminent mental health needs, the following are available options that are free, confidential, and available 24/7:
 
-#### Telephone/Virtual Support
+#### Crisis Support
 
-- **Community Crisis Line**:
-  **[Call 519-973-4435](tel:+15199734435)**. Immediate, free professional crisis care and support available 24 hours a day, 7 days a week.
+- **Windsor-Essex Community Crisis Line**:
+  **[Call 519-973-4435](tel:+15199734435)**. Immediate professional crisis care offered via telephone through Hôtel-Dieu Grace Healthcare.
 - **9-8-8 Suicide Crisis Helpline**:
   **[Call 9-8-8](tel:988)** or **[text 9-8-8](sms:988)**. A bilingual, trauma-informed toll-free service available to anyone in Canada experiencing emotional distress or thinking about suicide.
 - **Good 2 Talk**:

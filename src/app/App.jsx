@@ -1,15 +1,35 @@
 import { useState, useEffect } from 'react';
 import AppLayout from './AppLayout';
-import MenuSlider from '../features/slider-menu/MenuSlider';
-import Footer from '../components/Footer';
-import ArticleDeck from '../features/articles/components/ArticleDeck';
+import SiteNav from '../features/site-nav/SiteNav';
+import ArticleView from '../features/articles/ArticleView';
+import SliderTrigger from './SliderTrigger';
+
+const SliderState = Object.freeze({
+  ARTICLE: 'article',
+  IDLE: 'idle',
+  MENU: 'menu',
+});
+
+const isValidState = (string) => Object.values(SliderState).includes(string);
 
 export default function App() {
-  const [articleView, setArticleView] = useState(null);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeOverlay, setActiveOverlay] = useState(SliderState.IDLE);
   const [isComingSoon, setIsComingSoon] = useState(true);
 
-  const toggleMenu = () => setMenuOpen((prev) => !prev);
+  const derivedState =
+    typeof activeOverlay === 'object' ? SliderState.ARTICLE : activeOverlay;
+
+  if (!isValidState(derivedState)) setActiveOverlay(SliderState.IDLE);
+
+  const toggleSlider = (payload = SliderState.IDLE) => {
+    if (
+      activeOverlay !== SliderState.IDLE
+      || !(isValidState(payload) || typeof payload === 'object')
+    )
+      return setActiveOverlay(SliderState.IDLE);
+
+    return setActiveOverlay(payload);
+  };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -18,46 +38,44 @@ export default function App() {
         setIsComingSoon((prev) => !prev);
       }
 
+      // Set overlay to 'idle' on escape click
       if (e.key === 'Escape') {
-        if (articleView) setArticleView(null);
-        else if (menuOpen) setMenuOpen(false);
+        setActiveOverlay(SliderState.IDLE);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [menuOpen, articleView]);
+  }, []);
 
   return (
-    <div className={`app-root ${articleView ? 'article-is-active' : ''}`}>
+    <div
+      className={`app-root ${[SliderState.MENU, SliderState.ARTICLE].includes(derivedState) && `${derivedState}-is-active`}`}>
       {!isComingSoon && (
-        <ArticleDeck
-          activeArticle={articleView}
-          onClose={() => setArticleView(null)}
-          inert={menuOpen ? true : undefined}
+        <SliderTrigger
+          sliderState={derivedState}
+          onClick={() => toggleSlider(SliderState.MENU)}
         />
       )}
       {!isComingSoon && (
-        <MenuSlider
-          menuOpen={menuOpen}
-          setMenuOpen={setMenuOpen}
-          inert={!!articleView}
+        <ArticleView
+          activeArticle={
+            derivedState === SliderState.ARTICLE ? activeOverlay : null
+          }
+          inert={derivedState === SliderState.MENU}
         />
       )}
-      <main
-        inert={articleView || menuOpen ? true : undefined}
-        className={`menu-slider ${menuOpen ? 'menu-slider--open' : ''}`}
-        onClick={menuOpen ? toggleMenu : undefined}>
-        {menuOpen && !isComingSoon && (
-          <div className='menu-slider__click-guard' />
-        )}
-        <AppLayout
-          onToggleClick={toggleMenu}
-          menuOpen={menuOpen}
-          onSelectArticle={setArticleView}
-          isComingSoon={isComingSoon}
+      {!isComingSoon && (
+        <SiteNav
+          onToggle={() => toggleSlider(SliderState.IDLE)}
+          inert={derivedState === SliderState.ARTICLE}
         />
-        {!isComingSoon && <Footer inert={!!(articleView || menuOpen)} />}
-      </main>
+      )}
+      <AppLayout
+        isComingSoon={isComingSoon}
+        onSelectArticle={toggleSlider}
+        menuOpen={derivedState === SliderState.MENU}
+        inert={derivedState !== SliderState.IDLE}
+      />
     </div>
   );
 }

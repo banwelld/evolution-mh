@@ -145,7 +145,7 @@ html {
 }
 
 html:has(.article-is-active),
-html:has(.menu-slider--open) {
+html:has(.menu-is-active) {
   overflow-y: hidden;
 }
 

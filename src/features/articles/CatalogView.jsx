@@ -1,5 +1,5 @@
 import { SectionFrame, ContainerFrame } from '../../components/Section';
-import CardCatalog from './components/CardCatalog';
+import Catalog from './components/Catalog';
 import MarkdownDisplay from '../../components/MarkdownDisplay';
 import parseCatalog from './catalogData';
 
@@ -23,8 +23,8 @@ export default function CatalogView({
           <MarkdownDisplay markdownText={rawIntro} />
         </ContainerFrame>
       )}
-      <CardCatalog
-        catalog={catalog}
+      <Catalog
+        catalogData={catalog}
         cardButtonLabel={config.cardButtonLabel}
         onSelect={handleSelect}
         domain={domain}

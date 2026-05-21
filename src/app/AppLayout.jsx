@@ -5,6 +5,7 @@ import SectionTransition from '../features/section-transition/SectionTransition'
 import LocationView from '../features/location-view/LocationView';
 import ContactView from '../features/contact-view/ContactView';
 import Accordion from '../components/Accordion';
+import Footer from '../components/Footer';
 
 const rawContent = import.meta.glob(
   '../features/content-management/content/data/quote-*.md',
@@ -24,23 +25,22 @@ const rawFaqs = import.meta.glob(
   },
 );
 
-export default function AppLayout({ onSelectArticle, isComingSoon }) {
-  const unpackRawText = (filename) =>
-    rawContent[`../features/content-management/content/data/${filename}.md`];
+const unpackMarkdown = (glob, filename) => {
+  const cleanFilename = filename.endsWith('.md') ? filename : `${filename}.md`;
+  return glob[`../features/content-management/content/data/${cleanFilename}`];
+};
 
-  const unpackRawFaq = (filename) =>
-    rawFaqs[`../features/content-management/content/data/${filename}.md`];
+const componentMap = {
+  hero: HeroView,
+  team: CatalogView,
+  service: CatalogView,
+  contact: ContactView,
+  location: LocationView,
+};
 
-  const componentMap = {
-    hero: HeroView,
-    team: CatalogView,
-    service: CatalogView,
-    contact: ContactView,
-    location: LocationView,
-  };
-
+export default function AppLayout({ onSelectArticle, isComingSoon, inert }) {
   return (
-    <>
+    <main inert={inert} className={'app-slider'}>
       {siteConfig.sections.map((section) => {
         const Component = componentMap[section.type];
         if (!Component) return null;
@@ -60,19 +60,24 @@ export default function AppLayout({ onSelectArticle, isComingSoon }) {
             id={section.id}
             className={`view view--${section.type}`}>
             {section.quoteFile && !isHeroSection && (
-              <SectionTransition rawText={unpackRawText(section.quoteFile)} />
+              <SectionTransition
+                rawText={unpackMarkdown(rawContent, section.quoteFile)}
+              />
             )}
             <Component
               configProps={configProps}
               isComingSoon={isComingSoon}
               onSelectArticle={onSelectArticle}>
               {section.faqFile && !isHeroSection && (
-                <Accordion rawFrontmatter={unpackRawFaq(section.faqFile)} />
+                <Accordion
+                  rawFrontmatter={unpackMarkdown(rawFaqs, section.faqFile)}
+                />
               )}
             </Component>
           </div>
         );
       })}
-    </>
+      {!isComingSoon && <Footer />}
+    </main>
   );
 }
