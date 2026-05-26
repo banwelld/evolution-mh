@@ -7,12 +7,12 @@ const schemas = import.meta.glob('../content-management/config/*Schema.js', {
 });
 
 const rawContent = {
-  team: import.meta.glob('../content-management/content/data/team/article-team-*.md', {
+  team: import.meta.glob('../content-management/content/data/team/article-*.md', {
     query: '?raw',
     eager: true,
     import: 'default',
   }),
-  service: import.meta.glob('../content-management/content/data/services/article-service-*.md', {
+  service: import.meta.glob('../content-management/content/data/services/article-*.md', {
     query: '?raw',
     eager: true,
     import: 'default',
@@ -26,12 +26,12 @@ const rawIntro = import.meta.glob('../content-management/content/data/intros/int
 });
 
 const images = {
-  team: import.meta.glob('../content-management/content/images/article-team-*.webp', {
+  team: import.meta.glob('../content-management/content/images/article-*.webp', {
     eager: true,
     import: 'default',
   }),
   service: import.meta.glob(
-    '../content-management/content/images/article-service-*.webp',
+    '../content-management/content/images/article-*.webp',
     {
       eager: true,
       import: 'default',

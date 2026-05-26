@@ -7,7 +7,7 @@ content:
     label: Team Members
     type: collection
     path: src/features/content-management/content/data/team
-    filename: "article-team-{{slug}}.md"
+    filename: "article-{{slug}}.md"
     fields:
       - name: name
         label: Full Name
@@ -41,7 +41,7 @@ content:
     label: Our Services
     type: collection
     path: src/features/content-management/content/data/services
-    filename: "article-service-{{slug}}.md"
+    filename: "article-{{slug}}.md"
     fields:
       - name: title
         label: Service Title
