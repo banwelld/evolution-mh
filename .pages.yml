@@ -7,7 +7,7 @@ content:
     label: Team Members
     type: collection
     path: src/features/content-management/content/data
-    filename: article-team-{{slug}}
+    filename: "article-team-{{slug}}.md"
     exclude:
       - "article-service-*"
       - "intro-*"
@@ -45,7 +45,7 @@ content:
     label: Our Services
     type: collection
     path: src/features/content-management/content/data
-    filename: article-service-{{slug}}
+    filename: "article-service-{{slug}}.md"
     exclude:
       - "article-team-*"
       - "intro-*"
