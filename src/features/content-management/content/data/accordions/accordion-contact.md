@@ -32,7 +32,7 @@ entries:
 
       - **Mental Health & Addictions Urgent Crisis Centre (MHAUCC)**:
 
-        Located at **1030 Ouellette Ave.** (adjacent to the Goyeau St. entrance of the WRH Ouellette Campus ER). This walk-in center is open 24 hours a day, 7 days a week for individuals aged 16 and older who need immediate assessment and support but cannot safely wait for standard community appointments.
+        Located at **1030 Ouellette Ave.** (adjacent to the Goyeau St. entrance of the WRH Ouellette Campus ER). This walk-in centre is open 24 hours a day, 7 days a week for individuals aged 16 and older who need immediate assessment and support but cannot safely wait for standard community appointments.
       - **Youth Mental Health Services**:
 
         Children and teens 15 and under can be assessed through the Pediatric Mental Health Program located at the **Windsor Regional Hospital Metropolitan Campus (1995 Lens Ave.)**.
