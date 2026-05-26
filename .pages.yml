@@ -1,10 +1,11 @@
 media:
   input: src/features/content-management/content/images
+  output: /src/features/content-management/content/images
 
-collections:
+content:
   - name: team
     label: Team Members
-    type: folder
+    type: collection
     path: src/features/content-management/content/data
     match: article-team-*.md
     exclude:
@@ -36,11 +37,11 @@ collections:
         required: true
       - name: body
         label: Biography (Bio text)
-        type: markdown
+        type: rich-text
 
   - name: services
     label: Our Services
-    type: folder
+    type: collection
     path: src/features/content-management/content/data
     match: article-service-*.md
     fields:
@@ -67,7 +68,7 @@ collections:
         required: true
       - name: body
         label: Detailed Service Description
-        type: markdown
+        type: rich-text
 
   - name: accordion_contact
     label: Crisis Support Accordion
@@ -84,5 +85,5 @@ collections:
             required: true
           - name: details
             label: Detailed Info (Markdown supported)
-            type: markdown
+            type: rich-text
             required: true
