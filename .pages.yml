@@ -32,7 +32,7 @@ content:
         label: Card Image (.webp)
         type: image
         required: true
-        help: "Please select or upload a WebP format image."
+        description: "Please select or upload a WebP format image."
       - name: imageDescription
         label: Image Description (Alt Text)
         type: string
@@ -67,7 +67,7 @@ content:
         label: Card Image (.webp)
         type: image
         required: true
-        help: "Please select or upload a WebP format image."
+        description: "Please select or upload a WebP format image."
       - name: imageDescription
         label: Image Description (Alt Text)
         type: string
