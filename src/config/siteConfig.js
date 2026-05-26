@@ -1,5 +1,3 @@
-import daveBanwellLogo from '../assets/dave-banwell-logo-sm.webp';
-
 export const siteConfig = {
   // Global App Settings
   global: {
@@ -27,7 +25,7 @@ export const siteConfig = {
     footer: {
       engineerUiCredit: 'Custom web app by Dave Banwell (2026)',
       engineerUrl: 'https://www.davebanwell.com',
-      engineerLogoPath: daveBanwellLogo,
+      engineerLogoPath: 'src/assets/dave-banwell-logo-sm.webp',
     },
   },
 

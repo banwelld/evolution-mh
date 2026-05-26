@@ -1,8 +1,13 @@
 import './Footer.css';
+import designerLogo from '../assets/dave-banwell-logo-sm.webp';
 
 export default function Footer({ inert, config }) {
   const { brandName, footer } = config;
   const { engineerUiCredit, engineerUrl, engineerLogoPath } = footer;
+
+  const logoSrc = engineerLogoPath?.includes('dave-banwell-logo-sm.webp')
+    ? designerLogo
+    : engineerLogoPath;
 
   return (
     <footer inert={inert ? true : undefined} className='footer'>
@@ -18,7 +23,7 @@ export default function Footer({ inert, config }) {
             className='footer__link'
             aria-label={`${engineerUiCredit} (opens in a new tab)`}
           >
-            <img src={engineerLogoPath} alt='designer logo' className='footer__designer-logo' />
+            <img src={logoSrc} alt='designer logo' className='footer__designer-logo' />
             {engineerUiCredit}
           </a>
         </div>
