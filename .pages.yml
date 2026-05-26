@@ -9,9 +9,9 @@ content:
     path: src/features/content-management/content/data
     filename: "article-team-{{slug}}.md"
     exclude:
-      - "article-service-*"
-      - "intro-*"
-      - "accordion-*"
+      - "article-service-*.md"
+      - "intro-*.md"
+      - "accordion-*.md"
     fields:
       - name: name
         label: Full Name
@@ -47,9 +47,9 @@ content:
     path: src/features/content-management/content/data
     filename: "article-service-{{slug}}.md"
     exclude:
-      - "article-team-*"
-      - "intro-*"
-      - "accordion-*"
+      - "article-team-*.md"
+      - "intro-*.md"
+      - "accordion-*.md"
     fields:
       - name: title
         label: Service Title
@@ -76,6 +76,29 @@ content:
         label: Detailed Service Description
         type: rich-text
 
+  - name: accordion_service
+    label: Services FAQ Accordion
+    type: file
+    path: src/features/content-management/content/data/accordion-service.md
+    fields:
+      - name: title
+        label: FAQ Section Title
+        type: string
+        required: true
+      - name: entries
+        label: FAQ Entries
+        type: object
+        list: true
+        fields:
+          - name: summary
+            label: Question (Summary)
+            type: string
+            required: true
+          - name: details
+            label: Answer (Details)
+            type: rich-text
+            required: true
+
   - name: accordion_contact
     label: Crisis Support Accordion
     type: file
@@ -83,7 +106,8 @@ content:
     fields:
       - name: entries
         label: Accordion Segments
-        type: list
+        type: object
+        list: true
         fields:
           - name: summary
             label: Header Title / Trigger
