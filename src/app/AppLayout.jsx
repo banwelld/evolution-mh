@@ -7,14 +7,14 @@ import HeroView from '../features/hero-view/HeroView';
 import LocationView from '../features/location-view/LocationView';
 import SectionTransition from '../features/section-transition/SectionTransition';
 
-const rawContent = import.meta.glob('../features/content-management/content/data/quote-*.md', {
+const rawContent = import.meta.glob('../features/content-management/content/data/quotes/quote-*.md', {
   query: '?raw',
   eager: true,
   import: 'default',
 });
 
 const rawAccordion = import.meta.glob(
-  '../features/content-management/content/data/accordion-*.md',
+  '../features/content-management/content/data/accordions/accordion-*.md',
   {
     query: '?raw',
     eager: true,
@@ -24,7 +24,13 @@ const rawAccordion = import.meta.glob(
 
 const unpackMarkdown = (glob, filename) => {
   const cleanFilename = filename.endsWith('.md') ? filename : `${filename}.md`;
-  return glob[`../features/content-management/content/data/${cleanFilename}`];
+  let subfolder = '';
+  if (cleanFilename.startsWith('quote-')) {
+    subfolder = 'quotes/';
+  } else if (cleanFilename.startsWith('accordion-')) {
+    subfolder = 'accordions/';
+  }
+  return glob[`../features/content-management/content/data/${subfolder}${cleanFilename}`];
 };
 
 const componentMap = {

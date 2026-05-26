@@ -7,19 +7,19 @@ const schemas = import.meta.glob('../content-management/config/*Schema.js', {
 });
 
 const rawContent = {
-  team: import.meta.glob('../content-management/content/data/article-team-*.md', {
+  team: import.meta.glob('../content-management/content/data/team/article-team-*.md', {
     query: '?raw',
     eager: true,
     import: 'default',
   }),
-  service: import.meta.glob('../content-management/content/data/article-service-*.md', {
+  service: import.meta.glob('../content-management/content/data/services/article-service-*.md', {
     query: '?raw',
     eager: true,
     import: 'default',
   }),
 };
 
-const rawIntro = import.meta.glob('../content-management/content/data/intro-*.md', {
+const rawIntro = import.meta.glob('../content-management/content/data/intros/intro-*.md', {
   query: '?raw',
   eager: true,
   import: 'default',
@@ -42,7 +42,7 @@ const images = {
 export default function parseCatalog(articleType) {
   const schemaPath = `../content-management/config/${articleType}Schema.js`;
   const dataToParse = { ...rawContent[articleType] };
-  const introKey = `../content-management/content/data/intro-${articleType}.md`;
+  const introKey = `../content-management/content/data/intros/intro-${articleType}.md`;
   const rawIntroMarkdown = rawIntro[introKey] || null;
 
   const parsedContent = parseContentData(dataToParse, schemas[schemaPath]);

@@ -1,8 +1,8 @@
 import Accordion from '../../components/Accordion';
 import MarkdownDisplay from '../../components/MarkdownDisplay';
 import { ContainerFrame, SectionFrame } from '../../components/Section';
-import crisisSupportRaw from '../content-management/content/data/accordion-contact.md?raw';
-import contactIntro from '../content-management/content/data/intro-contact.md?raw';
+import crisisSupportRaw from '../content-management/content/data/accordions/accordion-contact.md?raw';
+import contactIntro from '../content-management/content/data/intros/intro-contact.md?raw';
 import ContactForm from './components/ContactForm';
 import './ContactView.css';
 
