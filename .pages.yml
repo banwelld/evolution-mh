@@ -7,9 +7,11 @@ content:
     label: Team Members
     type: collection
     path: src/features/content-management/content/data
-    match: article-team-*.md
+    filename: article-team-{{slug}}
     exclude:
-      - intro-team.md
+      - "article-service-*"
+      - "intro-*"
+      - "accordion-*"
     fields:
       - name: name
         label: Full Name
@@ -43,7 +45,11 @@ content:
     label: Our Services
     type: collection
     path: src/features/content-management/content/data
-    match: article-service-*.md
+    filename: article-service-{{slug}}
+    exclude:
+      - "article-team-*"
+      - "intro-*"
+      - "accordion-*"
     fields:
       - name: title
         label: Service Title
