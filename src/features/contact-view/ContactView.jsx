@@ -1,18 +1,20 @@
-import { SectionFrame, ContainerFrame } from '../../components/Section';
-import ContactForm from './components/ContactForm';
+import Accordion from '../../components/Accordion';
 import MarkdownDisplay from '../../components/MarkdownDisplay';
-import crisisSupport from './content/crisis-support.md?raw';
+import { ContainerFrame, SectionFrame } from '../../components/Section';
+import crisisSupportRaw from '../content-management/content/data/accordion-contact.md?raw';
+import contactIntro from '../content-management/content/data/intro-contact.md?raw';
+import ContactForm from './components/ContactForm';
 import './ContactView.css';
 
 export default function ContactView({ configProps, children }) {
   const { domain, config } = configProps;
   return (
     <SectionFrame modifier={domain} title={config.sectionTitle}>
-      <p className='text--paragraph'>{config.introMessage}</p>
-      <ContactForm config={config} />
-      <ContainerFrame modifier='crisis-support'>
-        <MarkdownDisplay markdownText={crisisSupport} />
+      <ContainerFrame modifier='intro'>
+        <MarkdownDisplay markdownText={contactIntro} />
       </ContainerFrame>
+      <Accordion rawFrontmatter={crisisSupportRaw} />
+      <ContactForm config={config} />
       {children}
     </SectionFrame>
   );

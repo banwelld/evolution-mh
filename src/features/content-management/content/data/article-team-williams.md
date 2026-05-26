@@ -4,6 +4,7 @@ roleDescription: Clinical Psychologist
 credentials: C.Psych.
 imageDescription: A professional portrait of Dr. Elaine Williams
 sortOrder: 1
+image: article-team-williams.webp
 ---
 
 As a clinical psychologist who was first trained as a social worker, I endeavor to view the people I work with holistically, considering them as part of the various environments and contexts in which they find themselves. I use evidence-based treatment approaches that are applied in an individual and dynamic way to meet each client's needs, since these needs often change over the course of therapy. I offer individual, couples, family and group therapy with a range of client populations (children, adolescents and adults).

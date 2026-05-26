@@ -12,13 +12,6 @@
   text-align: center;
 }
 
-summary {
-  list-style: none;
-  &::-webkit-details-marker {
-    display: none;
-  }
-}
-
 div.wrapper--accordion {
   display: flex;
   flex-direction: column;
@@ -40,6 +33,10 @@ div.wrapper--accordion {
 
   &:last-child {
     border-radius: 0 0 var(--border-radius-tight) var(--border-radius-tight);
+  }
+
+  &:only-child {
+    border-radius: var(--border-radius-tight);
   }
 }
 

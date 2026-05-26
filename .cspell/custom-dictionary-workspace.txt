@@ -1,0 +1,20 @@
+# Custom Dictionary Words
+
+# Crisis Support Providers
+connex
+Youthline
+
+# Evolution MHS Specific
+MHS
+HRPP
+Psychoeducational
+Nadalin
+Barranger
+
+# Variable Names
+--color-brand1-xdk
+--color-contrast-xdk
+
+#Class Names
+MHAUCC
+title__creds

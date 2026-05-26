@@ -1,0 +1,88 @@
+media:
+  input: src/features/content-management/content/images
+
+collections:
+  - name: team
+    label: Team Members
+    type: folder
+    path: src/features/content-management/content/data
+    match: article-team-*.md
+    exclude:
+      - intro-team.md
+    fields:
+      - name: name
+        label: Full Name
+        type: string
+        required: true
+      - name: roleDescription
+        label: Job Title / Role
+        type: string
+        required: true
+      - name: credentials
+        label: Credentials (e.g. C.Psych)
+        type: string
+      - name: sortOrder
+        label: Sort Order (Grid sequence)
+        type: number
+        default: 0
+      - name: image
+        label: Card Image (.webp)
+        type: image
+        required: true
+        help: "Please select or upload a WebP format image."
+      - name: imageDescription
+        label: Image Description (Alt Text)
+        type: string
+        required: true
+      - name: body
+        label: Biography (Bio text)
+        type: markdown
+
+  - name: services
+    label: Our Services
+    type: folder
+    path: src/features/content-management/content/data
+    match: article-service-*.md
+    fields:
+      - name: title
+        label: Service Title
+        type: string
+        required: true
+      - name: subtitle
+        label: Brief Tagline / Subtitle
+        type: string
+        required: true
+      - name: sortOrder
+        label: Sort Order
+        type: number
+        default: 0
+      - name: image
+        label: Card Image (.webp)
+        type: image
+        required: true
+        help: "Please select or upload a WebP format image."
+      - name: imageDescription
+        label: Image Description (Alt Text)
+        type: string
+        required: true
+      - name: body
+        label: Detailed Service Description
+        type: markdown
+
+  - name: accordion_contact
+    label: Crisis Support Accordion
+    type: file
+    path: src/features/content-management/content/data/accordion-contact.md
+    fields:
+      - name: entries
+        label: Accordion Segments
+        type: list
+        fields:
+          - name: summary
+            label: Header Title / Trigger
+            type: string
+            required: true
+          - name: details
+            label: Detailed Info (Markdown supported)
+            type: markdown
+            required: true

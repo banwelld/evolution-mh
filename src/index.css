@@ -23,7 +23,7 @@
 
   --color-brand1-lt: color-mix(in hsl, var(--color-brand1) 65%, white);
 
-  /* Neutrals & Transparents */
+  /* Neutral & Transparent */
   --color-offwhite: color-mix(in hsl, var(--color-brand1) 40%, white);
   --color-offwhite-lt: color-mix(in hsl, var(--color-brand1) 25%, white);
   --color-nav-button: var(--color-brand1);
@@ -61,6 +61,7 @@
   --font-size-card-title: 1.4rem;
   --font-size-faq-question: 1.3rem;
   --font-size-credentials: 1.2rem;
+  --font-size-crisis-support-label: 1.2rem;
   --font-size-emphasis: 1.1rem;
 
   --height-logo: 150px;
@@ -201,13 +202,17 @@ img {
 }
 
 .text--list {
-  max-width: 70ch;
+  max-width: var(--max-width-text);
   width: 100%;
   padding-left: 3ch;
 }
 
 .list {
-  list-style-type: none;
+  list-style: none;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
 }
 
 /* ==========================================================================
@@ -234,6 +239,7 @@ img {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }

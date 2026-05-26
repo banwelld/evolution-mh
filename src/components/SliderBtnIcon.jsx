@@ -10,25 +10,29 @@ export default function SliderBtnIcon({ menuOpen }) {
       strokeWidth='2.5'
       strokeLinecap='round'
       strokeLinejoin='round'
-      aria-hidden='true'>
+      aria-hidden='true'
+    >
       <line
         className='menu-line menu-line--top'
         x1='2'
         y1='4'
         x2='22'
-        y2='4'></line>
+        y2='4'
+      ></line>
       <line
         className='menu-line menu-line--middle'
         x1='2'
         y1='12'
         x2='22'
-        y2='12'></line>
+        y2='12'
+      ></line>
       <line
         className='menu-line menu-line--bottom'
         x1='2'
         y1='20'
         x2='22'
-        y2='20'></line>
+        y2='20'
+      ></line>
     </svg>
   );
 }

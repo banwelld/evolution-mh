@@ -1,5 +1,5 @@
-import './Button.css';
 import { isValidString } from '../utils/helpers';
+import './Button.css';
 
 /**
  * @typedef ButtonProps

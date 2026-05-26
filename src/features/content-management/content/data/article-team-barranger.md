@@ -4,6 +4,7 @@ roleDescription: Psychometrist
 credentials: B.A. (ongoing)
 imageDescription: A professional portrait of Samantha Barranger
 sortOrder: 3
+image: article-team-barranger.webp
 ---
 
 I believe that the core of meaningful growth lies in unconditional positive regard and a humanistic approach to mental health. Currently in my fourth year of Psychology at the University of Windsor, I have dedicated my studies to the intersection of Autism and Behavioural Sciences. My work is driven by the belief that every individual possesses the internal resources for growth.

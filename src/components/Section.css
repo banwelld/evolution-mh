@@ -24,11 +24,11 @@
   padding: var(--padding-view-sections);
   background: var(--color-offwhite);
 
-  > *:not(p, form) {
+  >*:not(p, form) {
     width: 100%;
     max-width: 800px;
 
-    &.container--catalog,
+    &.section__container--catalog,
     &.wrapper--article-header {
       max-width: 1280px;
     }

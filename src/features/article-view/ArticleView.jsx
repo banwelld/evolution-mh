@@ -1,18 +1,25 @@
-import { useState, useEffect } from 'react';
-import ArticleLayout from './components/ArticleLayout';
+import { useEffect, useState } from 'react';
 import MarkdownDisplay from '../../components/MarkdownDisplay';
 import './ArticleView.css';
+import ArticleLayout from './components/ArticleLayout';
 
 const ARIA_DECK_VIEW = 'Article Detail View';
 
 export default function ArticleView({ activeArticle, inert }) {
-  const [displayArticle, setDisplayArticle] = useState(activeArticle);
+  const [prevArticle, setPrevArticle] = useState(null);
+  const [displayArticle, setDisplayArticle] = useState(null);
 
-  useEffect(() => {
+  // Sync prop to state during render (avoids cascading render warnings)
+  if (activeArticle !== prevArticle) {
+    setPrevArticle(activeArticle);
     if (activeArticle) {
       setDisplayArticle(activeArticle);
-    } else if (displayArticle) {
-      // Keep in DOM for 1000ms to match the CSS transition out
+    }
+  }
+
+  useEffect(() => {
+    // Only use useEffect for the async unmount timeout
+    if (!activeArticle && displayArticle) {
       const timer = setTimeout(() => setDisplayArticle(null), 1000);
       return () => clearTimeout(timer);
     }

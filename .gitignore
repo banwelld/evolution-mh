@@ -25,3 +25,6 @@ dist-ssr
 
 .env
 .env.local
+
+# Spellcheck User Dictionary Link
+.cspell/custom-dictionary-user.txt

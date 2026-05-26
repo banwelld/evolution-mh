@@ -1,23 +1,20 @@
-import { siteConfig } from '../config/siteConfig';
-import HeroView from '../features/hero-view/HeroView';
-import CatalogView from '../features/articles/CatalogView';
-import SectionTransition from '../features/section-transition/SectionTransition';
-import LocationView from '../features/location-view/LocationView';
-import ContactView from '../features/contact-view/ContactView';
 import Accordion from '../components/Accordion';
 import Footer from '../components/Footer';
+import { siteConfig } from '../config/siteConfig';
+import CatalogView from '../features/article-view/CatalogView';
+import ContactView from '../features/contact-view/ContactView';
+import HeroView from '../features/hero-view/HeroView';
+import LocationView from '../features/location-view/LocationView';
+import SectionTransition from '../features/section-transition/SectionTransition';
 
-const rawContent = import.meta.glob(
-  '../features/content-management/content/data/quote-*.md',
-  {
-    query: '?raw',
-    eager: true,
-    import: 'default',
-  },
-);
+const rawContent = import.meta.glob('../features/content-management/content/data/quote-*.md', {
+  query: '?raw',
+  eager: true,
+  import: 'default',
+});
 
-const rawFaqs = import.meta.glob(
-  '../features/content-management/content/data/faq-*.md',
+const rawAccordion = import.meta.glob(
+  '../features/content-management/content/data/accordion-*.md',
   {
     query: '?raw',
     eager: true,
@@ -55,29 +52,23 @@ export default function AppLayout({ onSelectArticle, isComingSoon, inert }) {
         };
 
         return (
-          <div
-            key={section.id}
-            id={section.id}
-            className={`view view--${section.type}`}>
+          <div key={section.id} id={section.id} className={`view view--${section.type}`}>
             {section.quoteFile && !isHeroSection && (
-              <SectionTransition
-                rawText={unpackMarkdown(rawContent, section.quoteFile)}
-              />
+              <SectionTransition rawText={unpackMarkdown(rawContent, section.quoteFile)} />
             )}
             <Component
               configProps={configProps}
               isComingSoon={isComingSoon}
-              onSelectArticle={onSelectArticle}>
+              onSelectArticle={onSelectArticle}
+            >
               {section.faqFile && !isHeroSection && (
-                <Accordion
-                  rawFrontmatter={unpackMarkdown(rawFaqs, section.faqFile)}
-                />
+                <Accordion rawFrontmatter={unpackMarkdown(rawAccordion, section.faqFile)} />
               )}
             </Component>
           </div>
         );
       })}
-      {!isComingSoon && <Footer />}
+      {!isComingSoon && <Footer config={siteConfig.global} />}
     </main>
   );
 }

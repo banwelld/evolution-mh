@@ -1,5 +1,5 @@
-import './Section.css';
 import { forwardRef } from 'react';
+import './Section.css';
 
 export const SectionFrame = forwardRef(
   ({ modifier, title, children, ...props }, ref) => {
@@ -7,7 +7,8 @@ export const SectionFrame = forwardRef(
       <section
         ref={ref}
         className={`section section__frame section__frame--${modifier}`}
-        {...props}>
+        {...props}
+      >
         {title && <h2 className='section-head'>{title}</h2>}
         {children}
       </section>
@@ -21,7 +22,8 @@ export const ArticleFrame = forwardRef(
       <article
         ref={ref}
         className={`article article__frame article__frame--${modifier}`}
-        {...props}>
+        {...props}
+      >
         {title && <h2 className='section-head'>{title}</h2>}
         {children}
       </article>
@@ -35,7 +37,8 @@ export const ContainerFrame = forwardRef(
       <div
         ref={ref}
         className={`section__container section__container--${modifier}`}
-        {...props}>
+        {...props}
+      >
         {children}
       </div>
     );

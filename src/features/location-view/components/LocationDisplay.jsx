@@ -1,11 +1,8 @@
-import './LocationDisplay.css';
 import { ContainerFrame } from '../../../components/Section';
-import Button from '../../../components/Button';
-export default function LocationDisplay({ config, locationMap, onDirectionClick }) {
-  const formattedPhone = config.phone.replace(
-    /(\d{3})(\d{3})(\d{4})/,
-    '($1) $2-$3',
-  );
+import './LocationDisplay.css';
+
+export default function LocationDisplay({ config, locationMap, locationControls }) {
+  const formattedPhone = config.phone.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
 
   return (
     <ContainerFrame modifier='location'>
@@ -21,9 +18,7 @@ export default function LocationDisplay({ config, locationMap, onDirectionClick 
         <div className='wrapper wrapper--location'>
           <h3 className='heading heading--location'>{config.contactHeading}</h3>
           <p className='location location__phone-number'>
-            <a
-              href={`tel:+1${config.phone}`}
-              className='link link--phone-number'>
+            <a href={`tel:+1${config.phone}`} className='link link--phone-number'>
               {formattedPhone}
             </a>
           </p>
@@ -33,14 +28,7 @@ export default function LocationDisplay({ config, locationMap, onDirectionClick 
             </a>
           </p>
         </div>
-
-        <div className='wrapper wrapper--directions-button'>
-          <Button
-            label={config.directionsButtonLabel}
-            modifiers={['location', 'light']}
-            onClick={onDirectionClick}
-          />
-        </div>
+        {locationControls}
       </ContainerFrame>
     </ContainerFrame>
   );

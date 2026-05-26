@@ -3,6 +3,7 @@ title: Psychoeducational Groups
 subtitle: Community & Peer Support
 imageDescription: A diverse group of people sitting on chairs in a circle in a bright room with vibrant artwork
 sortOrder: 4
+image: article-service-groups.webp
 ---
 
 Psychoeducational groups are structured programs that run for a set number of weeks and follow a planned curriculum. Each group is designed to help participants build skills and knowledge around a specific topic. Groups are organized by age (and sometimes by gender, depending on the focus of the group). When placing participants, we consider both how long someone has been waiting and how well the group members are likely to work together. Because these groups depend on community interest, they are not offered year-round. Some may run several times a year, while others may be offered only once annually.
@@ -25,7 +26,7 @@ In order to participate in the group, parents/caregivers must participate in a 3
 
 Executive functioning skills represent the strategies that we use to regulate our thoughts, emotions and behaviours. Without them, we can struggle to focus, to organize ourselves both inside our heads and in our daily lives, to control our impulses and to get started on things we have to do. The good news is that these skills can improve with practice, once we understand what they are and how they work.
 
-This group is currently a pilot project. It supports the learning of specific executive functioning skills during an 8-week closed group (completing a predesigned syllabus) for children aged 7 to 10. Children will engage in activities during each of 8 sessions that focus on a particular executive functioning skill and link this skill to their daily lives. Sessions are 75 minutes in length and include a 15-minute caregiver debrief in order to discuss the skill and at-home practice.
+This group is currently a pilot project. It supports the learning of specific executive functioning skills during an 8-week closed group (completing a pre-designed syllabus) for children aged 7 to 10. Children will engage in activities during each of 8 sessions that focus on a particular executive functioning skill and link this skill to their daily lives. Sessions are 75 minutes in length and include a 15-minute caregiver debrief in order to discuss the skill and at-home practice.
 
 #### The Healthy Relationships Plus Program (HRPP)
 

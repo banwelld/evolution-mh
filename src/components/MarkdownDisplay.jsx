@@ -11,7 +11,11 @@ export default function MarkdownDisplay({ markdownText }) {
     <ReactMarkdown
       urlTransform={(value) => {
         // Allow safe protocols (http, https, mailto, tel, sms) and relative paths/anchors
-        if (value.match(/^(https?|mailto|tel|sms):/i) || value.startsWith('/') || value.startsWith('#')) {
+        if (
+          value.match(/^(https?|mailto|tel|sms):/i) ||
+          value.startsWith('/') ||
+          value.startsWith('#')
+        ) {
           return value;
         }
         return '';
@@ -50,12 +54,14 @@ export default function MarkdownDisplay({ markdownText }) {
               className='text--link'
               target={isExternal ? '_blank' : undefined}
               rel={isExternal ? 'noopener noreferrer' : undefined}
-              {...props}>
+              {...props}
+            >
               {children}
             </a>
           );
         },
-      }}>
+      }}
+    >
       {markdownText}
     </ReactMarkdown>
   );

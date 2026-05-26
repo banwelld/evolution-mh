@@ -65,3 +65,13 @@
 .wrapper--directions-button {
   margin-top: 1rem;
 }
+
+.location-info__map-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-offwhite-lt);
+  color: var(--color-brand1-xdk);
+  font-family: var(--font-utility);
+  font-size: var(--font-size-emphasis);
+}

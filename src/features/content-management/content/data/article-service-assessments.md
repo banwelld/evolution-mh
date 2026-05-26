@@ -3,6 +3,7 @@ title: Assessments
 subtitle: Clinical & Psychological Evaluations
 imageDescription: A young child smiles while displaying an accurately completed pattern recognition exercise, seen from over an assessor's shoulder
 sortOrder: 3
+image: article-service-assessments.webp
 ---
 
 Sometimes it can be hard to understand why a child, teen, or adult is struggling at school, at work, or in everyday life. A psychological assessment helps us learn more about how someone thinks, learns, feels, and handles challenges. We look not only at the areas that feel difficult, but also at the person’s unique strengths. This helps us create clear recommendations and steps for support at home, school, or work.

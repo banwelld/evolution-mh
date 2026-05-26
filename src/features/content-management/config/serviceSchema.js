@@ -31,6 +31,15 @@ const ServiceSchema = z
       .default('Image description unavailable.'),
 
     sortOrder: z.number().catch(0).default(0),
+
+    image: z
+      .string()
+      .trim()
+      .refine((val) => val.endsWith('.webp'), {
+        message: 'Image must be a .webp file',
+      })
+      .catch('coming-soon.webp')
+      .default('coming-soon.webp'),
   })
   .transform((data) => {
     return {

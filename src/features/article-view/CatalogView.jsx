@@ -1,7 +1,7 @@
-import { SectionFrame, ContainerFrame } from '../../components/Section';
-import Catalog from './components/Catalog';
 import MarkdownDisplay from '../../components/MarkdownDisplay';
+import { ContainerFrame, SectionFrame } from '../../components/Section';
 import parseCatalog from './catalogData';
+import Catalog from './components/Catalog';
 
 export default function CatalogView({
   configProps,
@@ -23,12 +23,14 @@ export default function CatalogView({
           <MarkdownDisplay markdownText={rawIntro} />
         </ContainerFrame>
       )}
-      <Catalog
-        catalogData={catalog}
-        cardButtonLabel={config.cardButtonLabel}
-        onSelect={handleSelect}
-        domain={domain}
-      />
+      <ContainerFrame modifier={'catalog'}>
+        <Catalog
+          catalogData={catalog}
+          cardButtonLabel={config.cardButtonLabel}
+          onSelect={handleSelect}
+          domain={domain}
+        />
+      </ContainerFrame>
       {children}
     </SectionFrame>
   );

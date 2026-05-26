@@ -20,6 +20,13 @@ export const siteConfig = {
       invalidData: 'Quote text missing or invalid.',
       ariaDivider: 'Section divider.',
     },
+
+    //Footer
+    footer: {
+      engineerUiCredit: 'Custom web app by Dave Banwell (2026)',
+      engineerUrl: 'https://www.davebanwell.com',
+      engineerLogoPath: 'src/assets/dave-banwell-logo-sm.webp',
+    },
   },
 
   // The Page Layout
@@ -33,6 +40,8 @@ export const siteConfig = {
       quoteFile: null,
       faqFile: null,
       config: {
+        imageScrollSpeed: 0.53,
+        contentScrollSpeed: 0.398,
         callToAction: ['your', 'evolution', 'starts here'],
         btnContactLabel: 'Start your journey',
         btnContactAria: 'Contact us to start your journey',
@@ -40,9 +49,9 @@ export const siteConfig = {
         btnTeamAria: 'Advance to the next section to find out more about us',
         logoAltText: 'The Evolution Mental Health Services logo.',
         imageAltText:
-          'A young woman, pictured from the shoulders up, looks directly ahead with '
-          + 'confidence and resolve from the corner of a dim room, warmly lit from '
-          + 'the left.',
+          'A young woman, pictured from the shoulders up, looks directly ahead with ' +
+          'confidence and resolve from the corner of a dim room, warmly lit from ' +
+          'the left.',
       },
     },
     {
@@ -61,7 +70,7 @@ export const siteConfig = {
       id: 'service-view',
       menuLabel: 'Our Services',
       quoteFile: 'quote-evolution-2',
-      faqFile: 'faq-service',
+      faqFile: 'accordion-service',
       config: {
         sectionTitle: 'Our Services',
         cardButtonLabel: 'View Article',
@@ -75,15 +84,11 @@ export const siteConfig = {
       faqFile: null,
       config: {
         sectionTitle: 'Get in Touch',
-        introMessage:
-          'We look forward to connecting with you. Please reach out with any questions '
-          + 'you may have, or if you would like to schedule an initial consultation.',
         formSubmitting: 'Submitting...',
         sendButtonLabel: 'Send',
         successMessage: 'Thank you! Your message has been sent successfully.',
         failureMessage: 'Something went wrong. Please try again.',
-        errorMessage:
-          'Unable to connect to the server. Please check your internet connection.',
+        errorMessage: 'Unable to connect to the server. Please check your internet connection.',
         nameLabel: 'Your name',
         emailLabel: 'Your email address',
         phoneLabel: 'Your telephone number',

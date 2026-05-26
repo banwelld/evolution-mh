@@ -3,6 +3,7 @@ title: Therapy
 subtitle: Evidence-Based Interventions
 imageDescription: A young woman, deep in thought, while engaging in a therapy session, seen from over the therapist's shoulder
 sortOrder: 1
+image: article-service-therapy.webp
 ---
 
 Because everyone's story is unique, we tailor therapy to your goals, strengths, and challenges. We see therapy as a collaborative process and we take a client-centred approach, meaning your therapist will work with you to find an approach that feels like the right fit, rather than a one-size-fits-all model.

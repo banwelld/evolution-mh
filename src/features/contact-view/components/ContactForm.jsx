@@ -1,25 +1,26 @@
-import './ContactForm.css';
 import { useState } from 'react';
 import Button from '../../../components/Button';
+import './ContactForm.css';
 
-const FORM_SUBMITTING = 'Submitting...';
-const SEND_BUTTON_LABEL = 'Send';
-const CONTACT_SUCCESS = 'Thank you! Your message has been sent successfully.';
-const CONTACT_FAILURE = 'Something went wrong. Please try again.';
-const CONTACT_ERROR =
-  'Unable to connect to the server. Please check your internet connection.';
-
-const NAME_LABEL = 'Your name';
-const EMAIL_LABEL = 'Your email address';
-const PHONE_LABEL = 'Your telephone number';
-const MESSAGE_LABEL = 'How can we help?';
-
-export default function ContactForm() {
+export default function ContactForm({ config }) {
   const [status, setStatus] = useState({ state: 'idle', message: '' });
+
+  const {
+    formSubmitting,
+    sendButtonLabel,
+    successMessage,
+    failureMessage,
+    errorMessage,
+    nameLabel,
+    emailLabel,
+    phoneLabel,
+    messageLabel,
+    messagePlaceholder,
+  } = config;
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    setStatus({ state: 'loading', message: FORM_SUBMITTING });
+    setStatus({ state: 'loading', message: formSubmitting });
 
     const formData = new FormData(e.target);
     const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
@@ -30,24 +31,24 @@ export default function ContactForm() {
 
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
-        service: 'POST',
+        method: 'POST',
         body: formData,
       });
 
       const data = await response.json();
 
       if (data.success) {
-        setStatus({ state: 'success', message: CONTACT_SUCCESS });
-        event.target.reset(); // Clear the form on success
+        setStatus({ state: 'success', message: successMessage });
+        e.target.reset(); // Clear the form on success
       } else {
         setStatus({
           state: 'error',
-          message: data.message || CONTACT_FAILURE,
+          message: data.message || failureMessage,
         });
       }
     } catch (error) {
       console.error(error);
-      setStatus({ state: 'error', message: CONTACT_ERROR });
+      setStatus({ state: 'error', message: errorMessage });
     }
   };
 
@@ -66,7 +67,7 @@ export default function ContactForm() {
         type='text'
         name='name'
         className='form__input'
-        placeholder={NAME_LABEL}
+        placeholder={nameLabel}
         required
         disabled={isSubmitting}
       />
@@ -76,7 +77,7 @@ export default function ContactForm() {
         type='email'
         name='email'
         className='form__input'
-        placeholder={EMAIL_LABEL}
+        placeholder={emailLabel}
         required
         disabled={isSubmitting}
       />
@@ -86,14 +87,14 @@ export default function ContactForm() {
         type='text'
         name='phone'
         className='form__input'
-        placeholder={PHONE_LABEL}
+        placeholder={phoneLabel}
         required
         disabled={isSubmitting}
       />
 
       <div className='form__group'>
         <label htmlFor='message' className='form__label'>
-          {MESSAGE_LABEL}
+          {messageLabel}
         </label>
 
         <div className='form__textarea-wrapper'>
@@ -101,16 +102,17 @@ export default function ContactForm() {
             id='message'
             name='message'
             className='form__input form__textarea'
-            placeholder='I would like to inquire about...'
+            placeholder={messagePlaceholder}
             rows='6'
             required
             disabled={isSubmitting}
-            onInput={handleAutoResize}></textarea>
+            onInput={handleAutoResize}
+          ></textarea>
 
           <div className='form__submit-wrapper'>
             <Button
               type='submit'
-              label={isSubmitting ? FORM_SUBMITTING : SEND_BUTTON_LABEL}
+              label={isSubmitting ? formSubmitting : sendButtonLabel}
               modifiers={['contact-form', 'light']}
               disabled={isSubmitting}
             />
@@ -119,9 +121,7 @@ export default function ContactForm() {
       </div>
 
       {status.message && (
-        <div
-          className={`form__status form__status--${status.state}`}
-          aria-live='polite'>
+        <div className={`form__status form__status--${status.state}`} aria-live='polite'>
           {status.message}
         </div>
       )}

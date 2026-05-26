@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import AppLayout from './AppLayout';
+import { useEffect, useState } from 'react';
+import ArticleView from '../features/article-view/ArticleView';
 import SiteNav from '../features/site-nav/SiteNav';
-import ArticleView from '../features/articles/ArticleView';
+import AppLayout from './AppLayout';
 import SliderTrigger from './SliderTrigger';
 
 const SliderState = Object.freeze({
@@ -23,8 +23,8 @@ export default function App() {
 
   const toggleSlider = (payload = SliderState.IDLE) => {
     if (
-      activeOverlay !== SliderState.IDLE
-      || !(isValidState(payload) || typeof payload === 'object')
+      activeOverlay !== SliderState.IDLE ||
+      !(isValidState(payload) || typeof payload === 'object')
     )
       return setActiveOverlay(SliderState.IDLE);
 
@@ -49,7 +49,11 @@ export default function App() {
 
   return (
     <div
-      className={`app-root ${[SliderState.MENU, SliderState.ARTICLE].includes(derivedState) && `${derivedState}-is-active`}`}>
+      className={`app-root ${
+        [SliderState.MENU, SliderState.ARTICLE].includes(derivedState) &&
+        `${derivedState}-is-active`
+      }`}
+    >
       {!isComingSoon && (
         <SliderTrigger
           sliderState={derivedState}

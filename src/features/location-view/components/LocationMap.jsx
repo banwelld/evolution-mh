@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { useEffect } from 'react';
+import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
 import Button from '../../../components/Button';
 import { siteConfig } from '../../../config/siteConfig';
 
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 const DefaultIcon = L.icon({
@@ -65,7 +65,8 @@ function FullscreenControl({ config }) {
               stroke='var(--color-offwhite)'
               strokeWidth='2.5'
               strokeLinecap='round'
-              strokeLinejoin='round'>
+              strokeLinejoin='round'
+            >
               <path d='M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3' />
             </svg>
           }
@@ -84,7 +85,8 @@ export default function LocationMap({ config }) {
         center={position}
         zoom={16}
         scrollWheelZoom={false}
-        className='location-info__map'>
+        className='location-info__map'
+      >
         <TileLayer attribution={config.attribution} url={config.mapUrl} />
         <FullscreenControl config={config} />
         <Marker
@@ -93,7 +95,8 @@ export default function LocationMap({ config }) {
             add: (e) => {
               e.target.openPopup();
             },
-          }}>
+          }}
+        >
           <Popup>
             <div className='location-info__popup-content'>
               <div className='location-info__branded-name'>
