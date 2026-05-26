@@ -1,13 +1,16 @@
 import './Footer.css';
-import designerLogo from '../assets/dave-banwell-logo-sm.webp';
+
+const assets = import.meta.glob('../assets/*.{webp,png,jpg,jpeg,svg}', {
+  eager: true,
+  import: 'default',
+});
 
 export default function Footer({ inert, config }) {
   const { brandName, footer } = config;
   const { engineerUiCredit, engineerUrl, engineerLogoPath } = footer;
 
-  const logoSrc = engineerLogoPath?.includes('dave-banwell-logo-sm.webp')
-    ? designerLogo
-    : engineerLogoPath;
+  const filename = engineerLogoPath?.split('/').pop();
+  const logoSrc = assets[`../assets/${filename}`] || engineerLogoPath;
 
   return (
     <footer inert={inert ? true : undefined} className='footer'>
