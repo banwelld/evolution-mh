@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useSmoothScroll } from '../../hooks/useSmoothScroll';
 import Button from '../../components/Button';
 import { siteConfig } from '../../config/siteConfig';

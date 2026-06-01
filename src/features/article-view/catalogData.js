@@ -50,7 +50,8 @@ export default function parseCatalog(articleType) {
   return {
     rawIntro: rawIntroMarkdown,
     catalog: parsedContent.map((article) => {
-      const imagePath = `../content-management/content/images/${article.image}`;
+      const imageFilename = article.image.split('/').pop();
+      const imagePath = `../content-management/content/images/${imageFilename}`;
       return {
         ...article,
         image: images[articleType][imagePath] || comingSoonImage,
