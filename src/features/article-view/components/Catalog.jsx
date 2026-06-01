@@ -16,7 +16,7 @@ export default function Catalog({
           key={article.filename}
           className={`list-item card card--${domain ? domain : 'UNSPECIFIED_DOMAIN'}`}
         >
-          <ArticleLayout articleData={article}>
+          <ArticleLayout articleData={{ ...article, domain }}>
             <Button
               label={cardButtonLabel}
               modifiers={['card', 'light']}
