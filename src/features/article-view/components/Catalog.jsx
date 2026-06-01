@@ -3,12 +3,7 @@ import ArticleLayout from './ArticleLayout';
 
 const ARIA_CATALOG_LIST = 'Options list';
 
-export default function Catalog({
-  catalogData,
-  cardButtonLabel,
-  onSelect,
-  domain,
-}) {
+export default function Catalog({ catalogData, onClick, buttonLabel, domain }) {
   return (
     <ul className='list list--catalog' aria-label={ARIA_CATALOG_LIST}>
       {catalogData.map((article) => (
@@ -18,9 +13,9 @@ export default function Catalog({
         >
           <ArticleLayout articleData={{ ...article, domain }}>
             <Button
-              label={cardButtonLabel}
+              label={buttonLabel}
               modifiers={['card', 'light']}
-              onClick={() => onSelect(article.filename)}
+              onClick={() => onClick(article.filename)}
             />
           </ArticleLayout>
         </li>

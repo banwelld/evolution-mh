@@ -9,10 +9,10 @@
   height: 100vh;
   z-index: 1;
   background-color: var(--color-offwhite-lt);
-}
 
-.article__frame {
-  min-height: 100vh;
+  >.article__frame {
+    height: 100%;
+  }
 }
 
 .article-is-active .article-deck {

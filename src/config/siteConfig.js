@@ -2,7 +2,6 @@ export const siteConfig = {
   // Global App Settings
   global: {
     brandName: 'Evolution Mental Health Services',
-    brandShort: 'Evolution MHS',
     comingSoonText: ['', 'Coming Soon', ''],
 
     // UI Defaults
@@ -42,11 +41,21 @@ export const siteConfig = {
       config: {
         imageScrollSpeed: 0.53,
         contentScrollSpeed: 0.398,
-        callToAction: ['your', 'evolution', 'starts here'],
-        btnContactLabel: 'Start your journey',
-        btnContactAria: 'Contact us to start your journey',
-        btnTeamLabel: 'Find out more',
-        btnTeamAria: 'Advance to the next section to find out more about us',
+        callToActionArr: ['your', 'evolution', 'starts here'],
+        buttonConfig: [
+          {
+            label: 'Start your journey',
+            clickParam: '#contact-view',
+            aria: 'Contact us to start your journey',
+            modifiers: ['medium', 'hero'],
+          },
+          {
+            label: 'Find out more',
+            clickParam: '#team-view',
+            aria: 'Advance to the next section to find out more about us',
+            modifiers: ['dark', 'hero'],
+          },
+        ],
         logoAltText: 'The Evolution Mental Health Services logo.',
         imageAltText:
           'A young woman, pictured from the shoulders up, looks directly ahead with ' +
@@ -105,13 +114,14 @@ export const siteConfig = {
       config: {
         sectionTitle: 'our location',
         addressHeading: 'Address',
-        contactHeading: 'Contact Information',
-        directionsButtonLabel: 'Get Directions',
-        toggleFullscreenLabel: 'Toggle Fullscreen',
         addressLine1: '300 Eugenie St. E., Suite D',
         addressLine2: 'Windsor, ON N8X 2Y1',
+        contactHeading: 'Contact Information',
         phone: '2267777124',
         email: 'info@evolutionmhs.ca',
+        directionsButtonLabel: 'Get Directions',
+        mapLabel: 'Evolution MHS',
+        toggleFullscreenLabel: 'Toggle Fullscreen',
         latitude: 42.288,
         longitude: -83.0146,
         attribution:

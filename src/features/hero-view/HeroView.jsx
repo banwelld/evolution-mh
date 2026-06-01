@@ -1,18 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSmoothScroll } from '../../hooks/useSmoothScroll';
-import logo from './assets/evolution-mhs-logo.webp';
+import logo from './assets/company-logo.webp';
 import heroImage from './assets/hero-image.webp';
 import HeroLayout from './components/HeroLayout';
 
-export default function HeroView({ configProps, isComingSoon }) {
-  const { config } = configProps;
-
+export default function HeroView({ config, isComingSoon }) {
   const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 640px)').matches);
   const onClick = useSmoothScroll(0);
   const heroImageRef = useRef(null);
   const contentRef = useRef(null);
 
-  // listen for screen width for conditional call-to-action rendering
   useEffect(() => {
     const media = window.matchMedia('(max-width: 640px)');
     const listener = (e) => setIsMobile(e.matches);
@@ -44,12 +41,16 @@ export default function HeroView({ configProps, isComingSoon }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isMobile, config.imageScrollSpeed, config.contentScrollSpeed]);
 
-  const heroViewState = {
+  const layoutProps = {
     isMobile,
     heroImageRef,
     contentRef,
     isComingSoon,
+    onClick,
+    heroImage,
+    logo,
+    config,
   };
 
-  return <HeroLayout {...{ heroViewState, onClick, heroImage, logo, config }} />;
+  return <HeroLayout {...layoutProps} />;
 }

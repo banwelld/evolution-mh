@@ -3,17 +3,12 @@ import { ContainerFrame, SectionFrame } from '../../components/Section';
 import parseCatalog from './catalogData';
 import Catalog from './components/Catalog';
 
-export default function CatalogView({
-  configProps,
-  onSelectArticle,
-  children,
-}) {
-  const { sectionType, domain, config } = configProps;
+export default function CatalogView({ sectionType, domain, config, onToggle, children }) {
   const { rawIntro, catalog } = parseCatalog(sectionType);
 
   const handleSelect = (filename) => {
     const match = catalog.find((item) => item.filename === filename);
-    if (match) onSelectArticle({ ...match, domain });
+    if (match) onToggle({ ...match, domain });
   };
 
   return (
@@ -26,8 +21,8 @@ export default function CatalogView({
       <ContainerFrame modifier={'catalog'}>
         <Catalog
           catalogData={catalog}
-          cardButtonLabel={config.cardButtonLabel}
-          onSelect={handleSelect}
+          onClick={handleSelect}
+          buttonLabel={config.cardButtonLabel}
           domain={domain}
         />
       </ContainerFrame>

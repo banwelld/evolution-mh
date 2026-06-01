@@ -14,27 +14,35 @@ const isValidState = (string) => Object.values(SliderState).includes(string);
 
 export default function App() {
   const [activeOverlay, setActiveOverlay] = useState(SliderState.IDLE);
+  const [activeArticle, setActiveArticle] = useState(null);
   const [isComingSoon, setIsComingSoon] = useState(true);
 
-  const derivedState =
-    typeof activeOverlay === 'object' ? SliderState.ARTICLE : activeOverlay;
+  const derivedState = typeof activeOverlay === 'object' ? SliderState.ARTICLE : activeOverlay;
 
   if (!isValidState(derivedState)) setActiveOverlay(SliderState.IDLE);
 
-  const toggleSlider = (payload = SliderState.IDLE) => {
-    if (
-      activeOverlay !== SliderState.IDLE ||
-      !(isValidState(payload) || typeof payload === 'object')
-    )
-      return setActiveOverlay(SliderState.IDLE);
+  if (derivedState === SliderState.ARTICLE && activeOverlay !== activeArticle) {
+    setActiveArticle(activeOverlay);
+  }
 
+  const handleSliderTransitionEnd = (e) => {
+    if (e.target.classList.contains('app-slider') && activeOverlay === SliderState.IDLE)
+      setActiveArticle(null);
+  };
+
+  const toggleSlider = (payload = SliderState.IDLE) => {
+    const isClosing = activeOverlay !== SliderState.IDLE;
+    const isValidPayload =
+      isValidState(payload) || (typeof payload === 'object' && payload !== null);
+
+    if (isClosing || !isValidPayload) return setActiveOverlay(SliderState.IDLE);
     return setActiveOverlay(payload);
   };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
       // Toggle Coming Soon Screen (Cmd + Opt + /)
-      if (e.metaKey && e.altKey && e.code === 'Slash') {
+      if ((e.metaKey || e.ctrlKey) && e.altKey && e.code === 'Slash') {
         setIsComingSoon((prev) => !prev);
       }
 
@@ -46,7 +54,6 @@ export default function App() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
-
   return (
     <div
       className={`app-root ${
@@ -55,31 +62,26 @@ export default function App() {
       }`}
     >
       {!isComingSoon && (
-        <SliderTrigger
-          sliderState={derivedState}
-          onClick={() => toggleSlider(SliderState.MENU)}
-        />
+        <>
+          <SliderTrigger
+            sliderState={derivedState}
+            onClick={() => toggleSlider(SliderState.MENU)}
+          />
+          {activeArticle && <ArticleView selectedArticle={activeArticle} />}
+          <SiteNav
+            onToggle={() => toggleSlider(SliderState.IDLE)}
+            inert={derivedState === SliderState.ARTICLE}
+          />
+        </>
       )}
-      {!isComingSoon && (
-        <ArticleView
-          activeArticle={
-            derivedState === SliderState.ARTICLE ? activeOverlay : null
-          }
-          inert={derivedState === SliderState.MENU}
+      <div onTransitionEnd={handleSliderTransitionEnd}>
+        <AppLayout
+          isComingSoon={isComingSoon}
+          onToggle={toggleSlider}
+          menuOpen={derivedState === SliderState.MENU}
+          inert={derivedState !== SliderState.IDLE}
         />
-      )}
-      {!isComingSoon && (
-        <SiteNav
-          onToggle={() => toggleSlider(SliderState.IDLE)}
-          inert={derivedState === SliderState.ARTICLE}
-        />
-      )}
-      <AppLayout
-        isComingSoon={isComingSoon}
-        onSelectArticle={toggleSlider}
-        menuOpen={derivedState === SliderState.MENU}
-        inert={derivedState !== SliderState.IDLE}
-      />
+      </div>
     </div>
   );
 }

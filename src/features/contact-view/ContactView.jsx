@@ -6,8 +6,7 @@ import contactIntro from '../content-management/content/data/intros/intro-contac
 import ContactForm from './components/ContactForm';
 import './ContactView.css';
 
-export default function ContactView({ configProps, children }) {
-  const { domain, config } = configProps;
+export default function ContactView({ domain, config, children }) {
   return (
     <SectionFrame modifier={domain} title={config.sectionTitle}>
       <ContainerFrame modifier='intro'>

@@ -8,8 +8,8 @@
   }
 }
 
-.article__frame--team-view,
-.article__frame--service-view,
+.article-deck>.article__frame--team-view,
+.article-deck>.article__frame--service-view,
 .section__frame--team-view,
 .section__frame--service-view,
 .section__frame--location-view,

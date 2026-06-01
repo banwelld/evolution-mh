@@ -1,25 +1,46 @@
+import Button from '../../../components/Button';
 import { ContainerFrame, SectionFrame } from '../../../components/Section';
 import '../HeroView.css';
 import CallToAction from './CallToAction';
-import CompanyLogo from './CompanyLogo';
-import HeroButtons from './HeroButtons';
-import HeroImage from './HeroImage';
 
-export default function HeroLayout({ heroViewState, onClick, heroImage, logo, config }) {
-  const { heroImageRef, contentRef, isMobile, isComingSoon } = heroViewState;
-
+export default function HeroLayout({
+  config,
+  heroImage,
+  logo,
+  onClick,
+  heroImageRef,
+  contentRef,
+  isMobile,
+  isComingSoon,
+}) {
+  const { imageAltText, logoAltText, callToActionArr, buttonConfig = [] } = config;
   return (
     <SectionFrame modifier='hero-view'>
-      <HeroImage
-        image={heroImage}
-        imageRef={heroImageRef}
-        altText={config.imageAltText}
-        callToAction={isMobile && <CallToAction heroText={config.callToAction} />}
-      />
+      <ContainerFrame modifier='hero-image'>
+        {isMobile && <CallToAction callToActionArr={callToActionArr} />}
+        <img src={heroImage} className='hero-image' ref={heroImageRef} alt={imageAltText} />
+      </ContainerFrame>
+
       <ContainerFrame modifier='hero-content' ref={contentRef}>
-        <CompanyLogo logo={logo} config={config} />
-        {!isMobile && <CallToAction heroText={config.callToAction} />}
-        {!isComingSoon && <HeroButtons config={config} onClick={onClick} />}
+        <ContainerFrame modifier='company-logo'>
+          <img className='hero-view__logo' src={logo} alt={logoAltText} />
+        </ContainerFrame>
+
+        {!isMobile && <CallToAction callToActionArr={callToActionArr} />}
+
+        {!isComingSoon && (
+          <ContainerFrame modifier='option-buttons'>
+            {buttonConfig.map((button) => (
+              <Button
+                key={button.label}
+                modifiers={button.modifiers}
+                label={button.label}
+                onClick={(e) => onClick(e, button.clickParam)}
+                aria-label={button.aria}
+              />
+            ))}
+          </ContainerFrame>
+        )}
       </ContainerFrame>
     </SectionFrame>
   );

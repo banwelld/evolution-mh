@@ -9,11 +9,14 @@ const LocationView = lazy(() => import('../features/location-view/LocationView')
 const SectionTransition = lazy(() => import('../features/section-transition/SectionTransition'));
 const Accordion = lazy(() => import('../components/Accordion'));
 
-const rawContent = import.meta.glob('../features/content-management/content/data/quotes/quote-*.md', {
-  query: '?raw',
-  eager: true,
-  import: 'default',
-});
+const rawContent = import.meta.glob(
+  '../features/content-management/content/data/quotes/quote-*.md',
+  {
+    query: '?raw',
+    eager: true,
+    import: 'default',
+  },
+);
 
 const rawAccordion = import.meta.glob(
   '../features/content-management/content/data/accordions/accordion-*.md',
@@ -35,7 +38,7 @@ const unpackMarkdown = (glob, filename) => {
   return glob[`../features/content-management/content/data/${subfolder}${cleanFilename}`];
 };
 
-const componentMap = {
+const viewMap = {
   hero: HeroView,
   team: CatalogView,
   service: CatalogView,
@@ -43,37 +46,35 @@ const componentMap = {
   location: LocationView,
 };
 
-export default function AppLayout({ onSelectArticle, isComingSoon, inert }) {
+export default function AppLayout({ onToggle, isComingSoon, inert }) {
   return (
     <main inert={inert} className={'app-slider'}>
       {siteConfig.sections.map((section) => {
-        const Component = componentMap[section.type];
-        if (!Component) return null;
+        const View = viewMap[section.type];
+        if (!View) return null;
 
-        const isHeroSection = section.type === 'hero';
-        if (isComingSoon && !isHeroSection) return null;
+        const isHeroView = section.type === 'hero';
+        if (isComingSoon && !isHeroView) return null;
 
-        const configProps = {
+        const viewProps = {
           config: section.config,
           sectionType: section.type,
           domain: section.id,
+          onToggle,
+          isComingSoon,
         };
 
         return (
           <div key={section.id} id={section.id} className={`view view--${section.type}`}>
-            <Suspense fallback={<div className="view-loader">Loading...</div>}>
-              {section.quoteFile && !isHeroSection && (
+            <Suspense fallback={<div className='view-loader'>Loading...</div>}>
+              {section.quoteFile && !isHeroView && (
                 <SectionTransition rawText={unpackMarkdown(rawContent, section.quoteFile)} />
               )}
-              <Component
-                configProps={configProps}
-                isComingSoon={isComingSoon}
-                onSelectArticle={onSelectArticle}
-              >
-                {section.faqFile && !isHeroSection && (
+              <View {...viewProps}>
+                {section.faqFile && !isHeroView && (
                   <Accordion rawFrontmatter={unpackMarkdown(rawAccordion, section.faqFile)} />
                 )}
-              </Component>
+              </View>
             </Suspense>
           </div>
         );

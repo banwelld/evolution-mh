@@ -1,8 +1,7 @@
 import { ArticleFrame } from '../../../components/Section';
 
 export default function ArticleLayout({ articleData, children }) {
-  const { domain, image, imageDescription, title, subtitle, credentials } =
-    articleData;
+  const { image, imageDescription, domain, title, subtitle, credentials } = articleData;
 
   return (
     <ArticleFrame modifier={domain}>

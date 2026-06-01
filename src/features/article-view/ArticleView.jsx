@@ -5,29 +5,30 @@ import ArticleLayout from './components/ArticleLayout';
 
 const ARIA_DECK_VIEW = 'Article Detail View';
 
-export default function ArticleView({ activeArticle, inert }) {
+export default function ArticleView({ selectedArticle, inert }) {
   const [prevArticle, setPrevArticle] = useState(null);
-  const [displayArticle, setDisplayArticle] = useState(null);
+  const [activeArticle, setActiveArticle] = useState(null);
 
   // Sync prop to state during render (avoids cascading render warnings)
-  if (activeArticle !== prevArticle) {
-    setPrevArticle(activeArticle);
-    if (activeArticle) {
-      setDisplayArticle(activeArticle);
+  if (selectedArticle !== prevArticle) {
+    setPrevArticle(selectedArticle);
+    if (selectedArticle) {
+      setActiveArticle(selectedArticle);
     }
   }
 
   useEffect(() => {
     // Only use useEffect for the async unmount timeout
-    if (!activeArticle && displayArticle) {
-      const timer = setTimeout(() => setDisplayArticle(null), 1000);
+    if (!selectedArticle && activeArticle) {
+      const timer = setTimeout(() => setActiveArticle(null), 1000);
       return () => clearTimeout(timer);
     }
-  }, [activeArticle, displayArticle]);
+  }, [selectedArticle, activeArticle]);
 
-  if (!displayArticle) return null;
+  if (!activeArticle) return null;
 
-  const { body, ...articleData } = displayArticle;
+  const { body, ...articleData } = activeArticle;
+  console.log(articleData);
   return (
     <aside className='article-deck' aria-label={ARIA_DECK_VIEW} inert={inert}>
       <ArticleLayout articleData={articleData}>
