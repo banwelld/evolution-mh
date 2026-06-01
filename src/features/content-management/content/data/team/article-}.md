@@ -1,7 +1,7 @@
 ---
 name: Dave Banwell
 roleDescription: Software/Data Engineer
-credentials: " "
+credentials: Diploma
 sortOrder: 4
 image: /src/features/content-management/content/images/article-banwell.webp
 imageDescription: A professional head-shot of Dave Banwell
