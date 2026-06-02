@@ -2,10 +2,11 @@
 title: Psychoeducational Groups
 subtitle: Community & Peer Support
 sortOrder: 4
-image: /src/features/content-management/content/images/article-groups.webp
+image: /src/features/content-management/content/images/groups.webp
 imageDescription: A diverse group of people sitting on chairs in a circle in a
   bright room with vibrant artwork
 ---
+
 Psychoeducational groups are structured programs that run for a set number of weeks and follow a planned curriculum. Each group is designed to help participants build skills and knowledge around a specific topic. Groups are organized by age (and sometimes by gender, depending on the focus of the group). When placing participants, we consider both how long someone has been waiting and how well the group members are likely to work together. Because these groups depend on community interest, they are not offered year-round. Some may run several times a year, while others may be offered only once annually.
 
 **We are currently gathering interest for three groups:**

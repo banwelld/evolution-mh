@@ -28,7 +28,7 @@ export default function ArticleView({ selectedArticle, inert }) {
   if (!activeArticle) return null;
 
   const { body, ...articleData } = activeArticle;
-  console.log(articleData);
+
   return (
     <aside className='article-deck' aria-label={ARIA_DECK_VIEW} inert={inert}>
       <ArticleLayout articleData={articleData}>

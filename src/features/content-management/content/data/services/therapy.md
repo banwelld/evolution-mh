@@ -2,10 +2,11 @@
 title: Therapy
 subtitle: Evidence-Based Interventions
 sortOrder: 1
-image: /src/features/content-management/content/images/article-therapy.webp
+image: /src/features/content-management/content/images/therapy.webp
 imageDescription: A young woman, deep in thought, while engaging in a therapy
   session, seen from over the therapist's shoulder
 ---
+
 Because everyone's story is unique, we tailor therapy to your goals, strengths, and challenges. We see therapy as a collaborative process and we take a client-centred approach, meaning your therapist will work with you to find an approach that feels like the right fit, rather than a one-size-fits-all model.
 
 Your first session is a chance for you and your therapist to get to know each other. We'll talk about what brings you to therapy, discuss confidentiality and its limits, benefits and risks related to therapy, and begin to set goals together. This may include the use of questionnaires and other assessment tools as needed. Therapy methods and techniques will vary depending on the goals you would like to address. You and your therapist will also decide on a schedule that fits your needs and availability. Therapy is offered virtually or in-person at our office.

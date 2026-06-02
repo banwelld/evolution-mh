@@ -8,6 +8,7 @@ export default function CatalogView({ sectionType, domain, config, onToggle, chi
 
   const handleSelect = (filename) => {
     const match = catalog.find((item) => item.filename === filename);
+    // CSS uses domain to style the cards
     if (match) onToggle({ ...match, domain });
   };
 

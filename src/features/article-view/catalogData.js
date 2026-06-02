@@ -1,5 +1,5 @@
-import { parseContentData } from '../../utils/helpers';
 import comingSoonImage from '../../assets/coming-soon.webp';
+import { parseContentData } from '../../utils/helpers';
 
 const schemas = import.meta.glob('../content-management/config/*Schema.js', {
   eager: true,
@@ -7,12 +7,12 @@ const schemas = import.meta.glob('../content-management/config/*Schema.js', {
 });
 
 const rawContent = {
-  team: import.meta.glob('../content-management/content/data/team/article-*.md', {
+  team: import.meta.glob('../content-management/content/data/team/*.md', {
     query: '?raw',
     eager: true,
     import: 'default',
   }),
-  service: import.meta.glob('../content-management/content/data/services/article-*.md', {
+  service: import.meta.glob('../content-management/content/data/services/*.md', {
     query: '?raw',
     eager: true,
     import: 'default',
@@ -26,17 +26,14 @@ const rawIntro = import.meta.glob('../content-management/content/data/intros/int
 });
 
 const images = {
-  team: import.meta.glob('../content-management/content/images/article-*.webp', {
+  team: import.meta.glob('../content-management/content/images/*.webp', {
     eager: true,
     import: 'default',
   }),
-  service: import.meta.glob(
-    '../content-management/content/images/article-*.webp',
-    {
-      eager: true,
-      import: 'default',
-    },
-  ),
+  service: import.meta.glob('../content-management/content/images/*.webp', {
+    eager: true,
+    import: 'default',
+  }),
 };
 
 export default function parseCatalog(articleType) {

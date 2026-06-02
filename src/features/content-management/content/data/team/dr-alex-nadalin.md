@@ -3,9 +3,10 @@ name: Dr. Alex Nadalin
 roleDescription: Clinical Psychologist
 credentials: C.Psych.
 sortOrder: 2
-image: /src/features/content-management/content/images/article-nadalin.webp
+image: /src/features/content-management/content/images/dr-alex-nadalin.webp
 imageDescription: A professional portrait of Dr. Alex Nadalin
 ---
+
 I am a registered clinical and school psychologist serving children and adolescents in Ontario. I provide comprehensive psychological assessments for learning, attention, and developmental differences, including autism spectrum disorder (ASD), as well as evaluations to support emotional and behavioural functioning. I work in collaboration with young people to identify their unique strengths and areas of need, and partner closely with parents and caregivers to translate assessment findings into meaningful, actionable guidance.
 
 In addition to assessment, I provide therapy for children and adolescents navigating anxiety, mood difficulties, social struggles, and life stressors. My approach blends empathy and psychological insight with practical tools, tailoring treatments to meet individual needs, and including parents along the way. I am committed to ongoing learning and provide treatment approaches that are supported by research.

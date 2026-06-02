@@ -11,6 +11,7 @@ export default function Catalog({ catalogData, onClick, buttonLabel, domain }) {
           key={article.filename}
           className={`list-item card card--${domain ? domain : 'UNSPECIFIED_DOMAIN'}`}
         >
+          {/* CSS uses domain to style the article-deck */}
           <ArticleLayout articleData={{ ...article, domain }}>
             <Button
               label={buttonLabel}
