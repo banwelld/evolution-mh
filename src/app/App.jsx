@@ -3,7 +3,7 @@ import { useMatch, useNavigate } from 'react-router-dom';
 import ArticleView from '../features/article-view/ArticleView';
 import parseCatalog from '../features/article-view/catalogData';
 import SiteNav from '../features/site-nav/SiteNav';
-import AppLayout from './AppLayout';
+import AppLayout from './AppLayout_inDev';
 import SliderTrigger from './SliderTrigger';
 
 const SliderState = Object.freeze({
@@ -14,7 +14,6 @@ const SliderState = Object.freeze({
 
 export default function App() {
   const [activeOverlay, setActiveOverlay] = useState(SliderState.IDLE);
-  const [isComingSoon, setIsComingSoon] = useState(true);
 
   const matchTeam = useMatch('/team/:id');
   const matchService = useMatch('/service/:id');
@@ -40,12 +39,11 @@ export default function App() {
     });
   }
 
-  const derivedState =
-    selectedArticle && !isComingSoon
-      ? SliderState.ARTICLE
-      : activeOverlay === SliderState.MENU
-        ? SliderState.MENU
-        : SliderState.IDLE;
+  const derivedState = selectedArticle
+    ? SliderState.ARTICLE
+    : activeOverlay === SliderState.MENU
+      ? SliderState.MENU
+      : SliderState.IDLE;
 
   const toggleSlider = useCallback(
     (payload = SliderState.IDLE) => {
@@ -76,11 +74,6 @@ export default function App() {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      // Toggle Coming Soon Screen (Cmd + Opt + /)
-      if ((e.metaKey || e.ctrlKey) && e.altKey && e.code === 'Slash') {
-        setIsComingSoon((prev) => !prev);
-      }
-
       if (e.key === 'Escape') {
         toggleSlider(SliderState.IDLE);
       }
@@ -102,21 +95,13 @@ export default function App() {
         `${derivedState}-is-active`
       }`}
     >
-      {!isComingSoon && (
-        <>
-          <SliderTrigger sliderState={derivedState} onClick={toggleMap[derivedState]} />
-          <ArticleView
-            selectedArticle={selectedArticle}
-            inert={derivedState !== SliderState.ARTICLE}
-          />
-          <SiteNav
-            onToggle={() => toggleSlider(SliderState.IDLE)}
-            inert={derivedState === SliderState.ARTICLE}
-          />
-        </>
-      )}
+      <SliderTrigger sliderState={derivedState} onClick={toggleMap[derivedState]} />
+      <ArticleView selectedArticle={selectedArticle} inert={derivedState !== SliderState.ARTICLE} />
+      <SiteNav
+        onToggle={() => toggleSlider(SliderState.IDLE)}
+        inert={derivedState === SliderState.ARTICLE}
+      />
       <AppLayout
-        isComingSoon={isComingSoon}
         onToggle={toggleSlider}
         menuOpen={derivedState === SliderState.MENU}
         inert={derivedState !== SliderState.IDLE}
