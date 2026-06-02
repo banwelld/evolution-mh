@@ -21,6 +21,7 @@ import './Button.css';
  * **IMPORTANT**: Component discards className props and creates its own as "button button--[modifier]"
  */
 export default function Button({
+  as: Component = 'button',
   label,
   type = 'button',
   displayAsText = false,
@@ -29,7 +30,7 @@ export default function Button({
   children, // omit from props
   ...props
 }) {
-  const buttonProps = { type, ...props };
+  const buttonProps = Component === 'button' ? { type, ...props } : props;
 
   // Filter out any empty strings or nulls from the modifiers array
   const activeModifiers = Array.isArray(modifiers)
@@ -49,8 +50,8 @@ export default function Button({
   const modClasses = normalizedMods.map((m) => `button--${m}`).join(' ');
 
   return (
-    <button {...buttonProps} className={`button ${modClasses}`.trim()}>
+    <Component {...buttonProps} className={`button ${modClasses}`.trim()}>
       {label}
-    </button>
+    </Component>
   );
 }

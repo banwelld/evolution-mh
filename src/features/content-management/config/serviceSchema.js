@@ -44,7 +44,7 @@ const ServiceSchema = z
   .transform((data) => {
     return {
       ...data,
-      contentType: 'service-article',
+      contentType: 'service',
     };
   });
 

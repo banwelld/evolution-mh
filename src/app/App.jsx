@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { useMatch, useNavigate } from 'react-router-dom';
 import ArticleView from '../features/article-view/ArticleView';
+import parseCatalog from '../features/article-view/catalogData';
 import SiteNav from '../features/site-nav/SiteNav';
 import AppLayout from './AppLayout';
 import SliderTrigger from './SliderTrigger';
@@ -10,34 +12,64 @@ const SliderState = Object.freeze({
   MENU: 'menu',
 });
 
-const isValidState = (string) => Object.values(SliderState).includes(string);
-
 export default function App() {
   const [activeOverlay, setActiveOverlay] = useState(SliderState.IDLE);
-  const [activeArticle, setActiveArticle] = useState(null);
   const [isComingSoon, setIsComingSoon] = useState(true);
 
-  const derivedState = typeof activeOverlay === 'object' ? SliderState.ARTICLE : activeOverlay;
+  const matchTeam = useMatch('/team/:id');
+  const matchService = useMatch('/service/:id');
+  const navigate = useNavigate();
 
-  if (!isValidState(derivedState)) setActiveOverlay(SliderState.IDLE);
+  const activeId = matchTeam?.params.id || matchService?.params.id;
+  const activeType = matchTeam ? 'team' : (matchService ? 'service' : null);
 
-  if (derivedState === SliderState.ARTICLE && activeOverlay !== activeArticle) {
-    setActiveArticle(activeOverlay);
+  // Resolve the article data
+  let selectedArticle = null;
+  if (activeId && activeType) {
+    const { catalog } = parseCatalog(activeType);
+    const match = catalog.find((item) => item.filename === activeId);
+    if (match) {
+      selectedArticle = { ...match, domain: `${activeType}-view` };
+    }
   }
 
-  const handleSliderTransitionEnd = (e) => {
-    if (e.target.classList.contains('app-slider') && activeOverlay === SliderState.IDLE)
-      setActiveArticle(null);
-  };
+  if (activeId && activeType && !selectedArticle) {
+    throw new Response('Not Found', {
+      status: 404,
+      statusText: `The requested ${activeType === 'team' ? 'team member profile' : 'service details'} "${activeId}" could not be found.`,
+    });
+  }
 
-  const toggleSlider = (payload = SliderState.IDLE) => {
-    const isClosing = activeOverlay !== SliderState.IDLE;
-    const isValidPayload =
-      isValidState(payload) || (typeof payload === 'object' && payload !== null);
+  const derivedState = (selectedArticle && !isComingSoon)
+    ? SliderState.ARTICLE
+    : (activeOverlay === SliderState.MENU ? SliderState.MENU : SliderState.IDLE);
 
-    if (isClosing || !isValidPayload) return setActiveOverlay(SliderState.IDLE);
-    return setActiveOverlay(payload);
-  };
+  const toggleSlider = useCallback(
+    (payload = SliderState.IDLE) => {
+      const isClosingArticle = !!selectedArticle;
+      const isClosingMenu = activeOverlay === SliderState.MENU;
+
+      if (payload === SliderState.IDLE) {
+        if (isClosingArticle) {
+          navigate('/');
+        } else if (isClosingMenu) {
+          setActiveOverlay(SliderState.IDLE);
+        }
+        return;
+      }
+
+      if (typeof payload === 'object' && payload !== null) {
+        navigate(`/${payload.contentType}/${payload.filename}`);
+        return;
+      }
+
+      if (payload === SliderState.MENU) {
+        setActiveOverlay(SliderState.MENU);
+        return;
+      }
+    },
+    [activeOverlay, selectedArticle, navigate],
+  );
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -46,14 +78,20 @@ export default function App() {
         setIsComingSoon((prev) => !prev);
       }
 
-      // Set overlay to 'idle' on escape click
       if (e.key === 'Escape') {
-        setActiveOverlay(SliderState.IDLE);
+        toggleSlider(SliderState.IDLE);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [toggleSlider]);
+
+  const toggleMap = {
+    [SliderState.ARTICLE]: () => toggleSlider(SliderState.IDLE),
+    [SliderState.IDLE]: () => toggleSlider(SliderState.MENU),
+    [SliderState.MENU]: () => toggleSlider(SliderState.IDLE),
+  };
+
   return (
     <div
       className={`app-root ${
@@ -63,25 +101,23 @@ export default function App() {
     >
       {!isComingSoon && (
         <>
-          <SliderTrigger
-            sliderState={derivedState}
-            onClick={() => toggleSlider(SliderState.MENU)}
+          <SliderTrigger sliderState={derivedState} onClick={toggleMap[derivedState]} />
+          <ArticleView
+            selectedArticle={selectedArticle}
+            inert={derivedState !== SliderState.ARTICLE}
           />
-          {activeArticle && <ArticleView selectedArticle={activeArticle} />}
           <SiteNav
             onToggle={() => toggleSlider(SliderState.IDLE)}
             inert={derivedState === SliderState.ARTICLE}
           />
         </>
       )}
-      <div onTransitionEnd={handleSliderTransitionEnd}>
-        <AppLayout
-          isComingSoon={isComingSoon}
-          onToggle={toggleSlider}
-          menuOpen={derivedState === SliderState.MENU}
-          inert={derivedState !== SliderState.IDLE}
-        />
-      </div>
+      <AppLayout
+        isComingSoon={isComingSoon}
+        onToggle={toggleSlider}
+        menuOpen={derivedState === SliderState.MENU}
+        inert={derivedState !== SliderState.IDLE}
+      />
     </div>
   );
 }

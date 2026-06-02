@@ -3,14 +3,8 @@ import { ContainerFrame, SectionFrame } from '../../components/Section';
 import parseCatalog from './catalogData';
 import Catalog from './components/Catalog';
 
-export default function CatalogView({ sectionType, domain, config, onToggle, children }) {
+export default function CatalogView({ sectionType, domain, config, children }) {
   const { rawIntro, catalog } = parseCatalog(sectionType);
-
-  const handleSelect = (filename) => {
-    const match = catalog.find((item) => item.filename === filename);
-    // CSS uses domain to style the cards
-    if (match) onToggle({ ...match, domain });
-  };
 
   return (
     <SectionFrame modifier={domain} title={config.sectionTitle}>
@@ -22,7 +16,7 @@ export default function CatalogView({ sectionType, domain, config, onToggle, chi
       <ContainerFrame modifier={'catalog'}>
         <Catalog
           catalogData={catalog}
-          onClick={handleSelect}
+          routePrefix={sectionType}
           buttonLabel={config.cardButtonLabel}
           domain={domain}
         />

@@ -1,0 +1,193 @@
+/* ==========================================================================
+   Error Page Styles
+   ========================================================================== */
+
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: var(--color-contrast-xdk);
+  padding: var(--padding-view-sections);
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+/* Background animated glow */
+.error-page__glow {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(650px, 90vw);
+  height: min(650px, 90vw);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-brand1) 18%, transparent) 0%,
+    color-mix(in srgb, var(--color-brand1) 5%, transparent) 40%,
+    transparent 70%
+  );
+  filter: blur(60px);
+  pointer-events: none;
+  animation: pulseGlow 8s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+@keyframes pulseGlow {
+  0% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 1;
+  }
+}
+
+/* Content wrapper */
+.error-page__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: var(--max-width-text);
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Elegant serif status code */
+.error-page__code {
+  font-family: var(--font-hero);
+  font-size: clamp(6rem, 16vw, 11rem);
+  font-weight: 300;
+  line-height: 0.9;
+  color: var(--color-brand1);
+  text-shadow: 
+    0 0 40px color-mix(in srgb, var(--color-brand1) 25%, transparent),
+    0 0 80px color-mix(in srgb, var(--color-brand1) 10%, transparent);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+/* Subtitle styling */
+.error-page__title {
+  font-family: var(--font-hero);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-offwhite-lt);
+  margin-bottom: 1.25rem;
+  line-height: 1.2;
+}
+
+/* Paragraph message */
+.error-page__message {
+  font-family: var(--font-utility);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--color-offwhite) 75%, transparent);
+  max-width: 48ch;
+  margin-bottom: 3rem;
+  letter-spacing: 0.02em;
+}
+
+/* Details component spacing and premium look */
+.error-page__details {
+  margin-top: 4.5rem;
+  width: 100%;
+  max-width: 520px;
+  text-align: left;
+  border-top: 1px solid color-mix(in srgb, var(--color-brand1-dk) 25%, transparent);
+  padding-top: 1.5rem;
+}
+
+/* Hide native marker and style custom trigger */
+.error-page__details-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-utility);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: color-mix(in srgb, var(--color-brand1) 50%, transparent);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  transition: color 0.25s ease;
+}
+
+.error-page__details-summary::-webkit-details-marker {
+  display: none;
+}
+
+.error-page__details-summary:hover {
+  color: var(--color-brand1);
+}
+
+.error-page__details-summary::before {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-bottom: 2px;
+}
+
+.error-page__details[open] .error-page__details-summary::before {
+  transform: rotate(45deg);
+}
+
+/* Monospace content block */
+.error-page__details-content {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.8rem;
+  color: color-mix(in srgb, var(--color-offwhite) 85%, transparent);
+  background-color: rgba(0, 0, 0, 0.25);
+  border: 1px solid color-mix(in srgb, var(--color-brand1-dk) 20%, transparent);
+  padding: 1rem 1.25rem;
+  margin-top: 1rem;
+  border-radius: var(--border-radius-tight);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  line-height: 1.5;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .error-page {
+    padding: 2rem 1.5rem;
+  }
+  .error-page__code {
+    margin-bottom: 1rem;
+  }
+  .error-page__message {
+    margin-bottom: 2rem;
+  }
+  .error-page__details {
+    margin-top: 3rem;
+  }
+}

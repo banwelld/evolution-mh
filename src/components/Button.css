@@ -48,6 +48,7 @@
 .button--card {
   width: 80%;
   font-size: var(--font-size-emphasis);
+  text-decoration: none;
 }
 
 /* Medium buttons - hero section only */
@@ -62,6 +63,7 @@
     border: 2px solid var(--color-brand1);
   }
 }
+
 /* Dark buttons - hero section plus slider controls */
 .button--dark {
   background: var(--color-contrast-dk);

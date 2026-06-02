@@ -57,7 +57,7 @@ const TeamSchema = z
 
     return {
       ...data,
-      contentType: 'team-article',
+      contentType: 'team',
     };
   });
 
