@@ -17,11 +17,11 @@ const routes = [
         path: 'service/:id',
         element: <ArticleView />,
       },
-      {
-        path: 'dev-app/banwell/evolution-mhs',
-        element: <DevApp />,
-      },
     ],
+  },
+  {
+    path: 'dev-app/banwell/evolution-mhs',
+    element: <DevApp />,
   },
 ];
 
