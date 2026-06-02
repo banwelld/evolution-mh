@@ -46,7 +46,7 @@ const viewMap = {
   location: LocationView,
 };
 
-export default function AppLayout({ onToggle, inert }) {
+export default function AppLayout({ onToggle, isComingSoon, inert }) {
   return (
     <main inert={inert} className={'app-slider'}>
       {siteConfig.sections.map((section) => {
@@ -54,12 +54,14 @@ export default function AppLayout({ onToggle, inert }) {
         if (!View) return null;
 
         const isHeroView = section.type === 'hero';
+        if (isComingSoon && !isHeroView) return null;
 
         const viewProps = {
           config: section.config,
           sectionType: section.type,
           domain: section.id,
           onToggle,
+          isComingSoon,
         };
 
         return (
@@ -77,7 +79,7 @@ export default function AppLayout({ onToggle, inert }) {
           </div>
         );
       })}
-      <Footer config={siteConfig.global} />
+      {!isComingSoon && <Footer config={siteConfig.global} />}
     </main>
   );
 }
