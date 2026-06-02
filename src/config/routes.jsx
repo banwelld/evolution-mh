@@ -1,6 +1,6 @@
 import App from '../app/App';
-import ArticleView from '../features/article-view/ArticleView';
 import ErrorPage from '../components/ErrorPage';
+import ArticleView from '../features/article-view/ArticleView';
 
 const routes = [
   {

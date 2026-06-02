@@ -21,7 +21,7 @@ export default function App() {
   const navigate = useNavigate();
 
   const activeId = matchTeam?.params.id || matchService?.params.id;
-  const activeType = matchTeam ? 'team' : (matchService ? 'service' : null);
+  const activeType = matchTeam ? 'team' : matchService ? 'service' : null;
 
   // Resolve the article data
   let selectedArticle = null;
@@ -40,9 +40,12 @@ export default function App() {
     });
   }
 
-  const derivedState = (selectedArticle && !isComingSoon)
-    ? SliderState.ARTICLE
-    : (activeOverlay === SliderState.MENU ? SliderState.MENU : SliderState.IDLE);
+  const derivedState =
+    selectedArticle && !isComingSoon
+      ? SliderState.ARTICLE
+      : activeOverlay === SliderState.MENU
+        ? SliderState.MENU
+        : SliderState.IDLE;
 
   const toggleSlider = useCallback(
     (payload = SliderState.IDLE) => {
