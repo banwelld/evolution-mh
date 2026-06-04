@@ -22,8 +22,8 @@ div.wrapper--accordion {
 .accordion__segment {
   display: flex;
   flex-direction: column;
-  background-color: var(--color-brand1-xdk);
-  border: solid 1pt var(--color-brand1-xdk);
+  background-color: var(--color-primary);
+  border: solid 1pt var(--color-primary);
   width: 100%;
   overflow: hidden;
 
@@ -58,7 +58,7 @@ div.wrapper--accordion {
 }
 
 .accordion__summary--text {
-  color: var(--color-brand1-lt);
+  color: var(--color-offwhite);
 }
 
 details[open] .marker--chevron {

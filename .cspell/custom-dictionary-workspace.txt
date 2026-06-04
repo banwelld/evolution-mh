@@ -12,8 +12,8 @@ Nadalin
 Barranger
 
 # Variable Names
---color-brand1-xdk
---color-contrast-xdk
+--color-primary
+--color-secondary-dk
 
 #Class Names
 MHAUCC

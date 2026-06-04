@@ -10,7 +10,7 @@
   position: relative;
   width: 100vw;
   min-height: 100vh;
-  background-color: var(--color-contrast-xdk);
+  background-color: var(--color-secondary-dk);
   padding: var(--padding-view-sections);
   overflow: hidden;
   box-sizing: border-box;
@@ -26,12 +26,10 @@
   width: min(650px, 90vw);
   height: min(650px, 90vw);
   border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--color-brand1) 18%, transparent) 0%,
-    color-mix(in srgb, var(--color-brand1) 5%, transparent) 40%,
-    transparent 70%
-  );
+  background: radial-gradient(circle,
+      color-mix(in srgb, var(--color-primary-xlt) 18%, transparent) 0%,
+      color-mix(in srgb, var(--color-primary-xlt) 5%, transparent) 40%,
+      transparent 70%);
   filter: blur(60px);
   pointer-events: none;
   animation: pulseGlow 8s ease-in-out infinite alternate;
@@ -43,6 +41,7 @@
     transform: translate(-50%, -50%) scale(0.9);
     opacity: 0.7;
   }
+
   100% {
     transform: translate(-50%, -50%) scale(1.15);
     opacity: 1;
@@ -66,6 +65,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -78,10 +78,10 @@
   font-size: clamp(6rem, 16vw, 11rem);
   font-weight: 300;
   line-height: 0.9;
-  color: var(--color-brand1);
-  text-shadow: 
-    0 0 40px color-mix(in srgb, var(--color-brand1) 25%, transparent),
-    0 0 80px color-mix(in srgb, var(--color-brand1) 10%, transparent);
+  color: var(--color-primary-xlt);
+  text-shadow:
+    0 0 40px color-mix(in srgb, var(--color-primary-xlt) 25%, transparent),
+    0 0 80px color-mix(in srgb, var(--color-primary-xlt) 10%, transparent);
   margin-bottom: 1.5rem;
   letter-spacing: -0.02em;
 }
@@ -114,7 +114,7 @@
   width: 100%;
   max-width: 520px;
   text-align: left;
-  border-top: 1px solid color-mix(in srgb, var(--color-brand1-dk) 25%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--color-primary-lt) 25%, transparent);
   padding-top: 1.5rem;
 }
 
@@ -128,7 +128,7 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: color-mix(in srgb, var(--color-brand1) 50%, transparent);
+  color: color-mix(in srgb, var(--color-primary-xlt) 50%, transparent);
   cursor: pointer;
   list-style: none;
   user-select: none;
@@ -140,7 +140,7 @@
 }
 
 .error-page__details-summary:hover {
-  color: var(--color-brand1);
+  color: var(--color-primary-xlt);
 }
 
 .error-page__details-summary::before {
@@ -165,7 +165,7 @@
   font-size: 0.8rem;
   color: color-mix(in srgb, var(--color-offwhite) 85%, transparent);
   background-color: rgba(0, 0, 0, 0.25);
-  border: 1px solid color-mix(in srgb, var(--color-brand1-dk) 20%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-primary-lt) 20%, transparent);
   padding: 1rem 1.25rem;
   margin-top: 1rem;
   border-radius: var(--border-radius-tight);
@@ -181,12 +181,15 @@
   .error-page {
     padding: 2rem 1.5rem;
   }
+
   .error-page__code {
     margin-bottom: 1rem;
   }
+
   .error-page__message {
     margin-bottom: 2rem;
   }
+
   .error-page__details {
     margin-top: 3rem;
   }

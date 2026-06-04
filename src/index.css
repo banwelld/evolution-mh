@@ -11,22 +11,19 @@
   --app-edge-boundary: max(0px, calc(50vw - 0.5 * var(--max-app-width)));
 
   /* Core Palette: "The Inner Glow" */
-  --color-brand1: hsl(40, 70%, 85%);
-  --color-contrast: hsl(0, 40%, 15%);
+  --color-primary: oklch(0.56 0.094 79.33);
+  --color-secondary: oklch(0.14 0.05 22);
 
   /* Derived Tones */
-  --color-brand1-dk: color-mix(in hsl, var(--color-brand1) 65%, black);
-  --color-contrast-dk: color-mix(in hsl, var(--color-contrast) 80%, black);
-
-  --color-brand1-xdk: color-mix(in hsl, var(--color-brand1) 45%, black);
-  --color-contrast-xdk: color-mix(in hsl, var(--color-contrast) 40%, black);
-
-  --color-brand1-lt: color-mix(in hsl, var(--color-brand1) 65%, white);
+  --color-primary-lt: oklch(0.78 0.0952 79.33);
+  --color-primary-xlt: oklch(0.9426 0.045 79.33);
+  --color-secondary-lt: oklch(0.245 0.05 22);
+  --color-secondary-dk: oklch(0.11 0.04 22);
 
   /* Neutral & Transparent */
-  --color-offwhite: color-mix(in hsl, var(--color-brand1) 40%, white);
-  --color-offwhite-lt: color-mix(in hsl, var(--color-brand1) 25%, white);
-  --color-nav-button: var(--color-brand1);
+  --color-offwhite: oklch(0.986 0.01 79.33);
+  --color-offwhite-lt: oklch(0.997 0.0077 79.33);
+  --color-nav-button: var(--color-primary-xlt);
   --color-nav-button-hover: var(--color-offwhite);
 
   /* Shadows */
@@ -35,15 +32,15 @@
     inset 0 -15px 40px rgba(0, 0, 0, 0.3);
   --shadow-sidebar: 15px 0 40px rgba(0, 0, 0, 0.4);
   --shadow-quote-block:
-    0 15px 40px color-mix(in srgb, var(--color-contrast-xdk) 30%, transparent),
-    0 -15px 40px color-mix(in srgb, var(--color-contrast-xdk) 30%, transparent);
+    0 15px 40px color-mix(in srgb, var(--color-secondary-dk) 30%, transparent),
+    0 -15px 40px color-mix(in srgb, var(--color-secondary-dk) 30%, transparent);
   --shadow-lift: 0 4px 15px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-form-field:
-    inset 0 2px 6px color-mix(in srgb, var(--color-brand1-xdk) 25%, transparent),
-    inset 0 1px 2px color-mix(in srgb, var(--color-brand1-xdk) 20%, transparent);
+    inset 0 2px 6px color-mix(in srgb, var(--color-primary) 25%, transparent),
+    inset 0 1px 2px color-mix(in srgb, var(--color-primary) 20%, transparent);
   --shadow-form-field-focused:
     0 0 0 transparent, 0 0 0 2px var(--color-offwhite-lt),
-    0 0 0 1px var(--color-brand1-xdk), 0 0 20px 3px var(--color-brand1-dk);
+    0 0 0 1px var(--color-primary), 0 0 20px 3px var(--color-primary-lt);
 
   /* Typography & Spacing */
   --font-hero: 'Cormorant Garamond', serif;
@@ -76,10 +73,9 @@
   --width-card: 320px;
   --justify-content-card-list: center;
   --gaps-card-list: 2.5rem 4ch;
-  --padding-card-horiz: 1rem;
-  --padding-card-vert: 1.5rem;
+  --padding-card: 1rem;
   --gap-card: 1.5rem;
-  --gap-card-inner: 0.6rem;
+  --gap-card-inner: 1rem;
   --gap-card-meta-details: 0.4rem;
 
   /* Form & Inputs Spacing */
@@ -108,9 +104,9 @@
   margin: 0;
   box-sizing: border-box;
   line-height: 1;
-  color: var(--color-contrast-dk);
+  color: var(--color-secondary);
   scrollbar-width: thin;
-  scrollbar-color: var(--color-brand1) var(--color-contrast);
+  scrollbar-color: var(--color-primary-xlt) var(--color-secondary-lt);
 }
 
 button {
@@ -123,7 +119,7 @@ html {
   scroll-behavior: smooth;
   overscroll-behavior: none;
   scrollbar-width: thin;
-  scrollbar-color: var(--color-brand1) var(--color-contrast);
+  scrollbar-color: var(--color-primary-xlt) var(--color-secondary-lt);
 }
 
 /* For older WebKit engines (Chrome/Safari) */
@@ -133,16 +129,16 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-contrast);
+  background: var(--color-secondary-lt);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-brand1);
+  background-color: var(--color-primary-xlt);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-brand1);
+  background-color: var(--color-primary-xlt);
 }
 
 html:has(.article-is-active),
@@ -154,7 +150,7 @@ body {
   display: flex;
   justify-content: center;
   font-family: var(--font-utility);
-  background: var(--color-contrast-xdk);
+  background: var(--color-secondary-dk);
   width: 100%;
   overflow-x: hidden;
 }

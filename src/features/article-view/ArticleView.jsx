@@ -31,7 +31,7 @@ export default function ArticleView({ selectedArticle, inert }) {
 
   return (
     <aside className='article-deck' aria-label={ARIA_DECK_VIEW} inert={inert}>
-      <ArticleLayout articleData={articleData}>
+      <ArticleLayout articleData={articleData} isPageLayout>
         {body && (
           <div className='wrapper wrapper--article-text'>
             <MarkdownDisplay markdownText={body} />

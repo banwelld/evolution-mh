@@ -23,7 +23,7 @@
   border-radius: 10px;
   overflow: hidden;
   box-shadow: var(--shadow-lift);
-  border: 1px solid var(--color-brand1-lt);
+  border: 1px solid var(--color-offwhite);
 }
 
 .location-info__map {
@@ -47,7 +47,7 @@
 .heading--location {
   font-size: var(--font-size-location-title);
   font-family: var(--font-hero);
-  color: var(--color-brand1-xdk);
+  color: var(--color-primary);
   text-transform: uppercase;
 }
 
@@ -57,7 +57,7 @@
   transition: color 0.15s ease;
 
   &:hover {
-    color: var(--color-brand1-xdk);
+    color: var(--color-primary);
     text-decoration: underline;
   }
 }
@@ -71,7 +71,7 @@
   justify-content: center;
   align-items: center;
   background-color: var(--color-offwhite-lt);
-  color: var(--color-brand1-xdk);
+  color: var(--color-primary);
   font-family: var(--font-utility);
   font-size: var(--font-size-emphasis);
 }

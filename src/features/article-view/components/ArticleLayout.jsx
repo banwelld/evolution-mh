@@ -1,17 +1,17 @@
 import { ArticleFrame } from '../../../components/Section';
 
-export default function ArticleLayout({ articleData, children }) {
+export default function ArticleLayout({ articleData, isPageLayout = false, children }) {
   const { image, imageDescription, domain, title, subtitle, credentials } = articleData;
+
+  const Heading = isPageLayout ? 'h1' : 'h3';
 
   return (
     <ArticleFrame modifier={domain}>
       <header className='wrapper wrapper--article-header'>
-        {image && (
-          <div className='container container--image'>
-            <img className='image' src={image} alt={imageDescription} />
-          </div>
-        )}
-        <h3 className='title'>
+        <div className='wrapper wrapper--image'>
+          <img className='image' src={image} alt={imageDescription} />
+        </div>
+        <Heading className='title'>
           <div className='title__first-line'>
             {title}
             {credentials && (
@@ -26,7 +26,7 @@ export default function ArticleLayout({ articleData, children }) {
               <span className='title__subtitle'>{subtitle}</span>
             </div>
           )}
-        </h3>
+        </Heading>
       </header>
       {children}
     </ArticleFrame>

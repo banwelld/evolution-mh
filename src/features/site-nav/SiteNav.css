@@ -51,7 +51,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--color-contrast-xdk);
+  background-color: var(--color-secondary-dk);
   box-shadow: var(--shadow-menu);
   z-index: 1;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -76,10 +76,8 @@
   transition: all 0.15s ease;
 
   &:has(.button--navigation:hover) {
-    border-top: solid 1px
-      color-mix(in hsl, var(--color-offwhite-lt) 50%, transparent);
-    border-bottom: solid 1px
-      color-mix(in hsl, var(--color-offwhite-lt) 50%, transparent);
+    border-top: solid 1px color-mix(in hsl, var(--color-offwhite-lt) 50%, transparent);
+    border-bottom: solid 1px color-mix(in hsl, var(--color-offwhite-lt) 50%, transparent);
   }
 }
 

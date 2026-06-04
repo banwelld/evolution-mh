@@ -22,7 +22,7 @@
 .section-divider {
   position: relative;
   display: flex;
-  background: var(--color-contrast-dk);
+  background: var(--color-secondary);
   width: 100%;
   padding: var(--padding-section-divider);
   gap: var(--gap-editorial-divider);
@@ -32,7 +32,7 @@
   box-shadow: var(--shadow-quote-block);
 
   .text--paragraph {
-    color: var(--color-brand1);
+    color: var(--color-primary-xlt);
     line-height: 1.2;
     font-family: var(--font-hero);
     font-size: var(--font-size-section-divider);
@@ -45,7 +45,7 @@ figcaption {
   display: block;
   width: 100%;
   text-align: right;
-  color: var(--color-brand1);
+  color: var(--color-primary-xlt);
   font-family: var(--font-utility);
   font-size: 0.9rem;
   text-transform: uppercase;

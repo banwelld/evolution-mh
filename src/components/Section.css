@@ -54,6 +54,6 @@
 .section__container--faq {
   color: var(--font-color-offwhite-lt);
   border-radius: 8px;
-  border: solid 1px var(--color-brand1-xdk);
+  border: solid 1px var(--color-primary);
   max-width: var(--max-width-text);
 }

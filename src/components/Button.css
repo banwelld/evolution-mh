@@ -18,8 +18,8 @@
   outline: none;
   box-shadow:
     0 0 0 2px var(--color-offwhite),
-    0 0 0 4px var(--color-brand1-dk),
-    0 0 10px 4px var(--color-brand1-dk);
+    0 0 0 4px var(--color-primary-lt),
+    0 0 10px 4px var(--color-primary-lt);
 }
 
 .button:active {
@@ -35,11 +35,11 @@
 /* Light buttons - default for all but hero section */
 .button--light {
   background: var(--color-offwhite);
-  color: var(--color-brand1-xdk);
-  border: 1px solid var(--color-brand1-xdk);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
 
   &:hover {
-    background: var(--color-brand1-xdk);
+    background: var(--color-primary);
     color: var(--color-offwhite-lt);
     border: 1px solid transparent;
   }
@@ -53,27 +53,27 @@
 
 /* Medium buttons - hero section only */
 .button--medium {
-  background: var(--color-brand1-xdk);
-  color: var(--color-offwhite);
-  border: 2px solid var(--color-brand1-dk);
+  background: var(--color-primary);
+  color: var(--color-offwhite-lt);
+  border: 2px solid var(--color-primary-lt);
 
   &:hover {
-    background: var(--color-brand1-xdk);
+    background: var(--color-primary);
     color: var(--color-offwhite-lt);
-    border: 2px solid var(--color-brand1);
+    border: 2px solid var(--color-primary-xlt);
   }
 }
 
 /* Dark buttons - hero section plus slider controls */
 .button--dark {
-  background: var(--color-contrast-dk);
-  color: var(--color-brand1-lt);
-  border: 2px solid var(--color-brand1-dk);
+  background: var(--color-secondary);
+  color: var(--color-offwhite);
+  border: 2px solid var(--color-primary-lt);
 
   &:hover {
-    background: var(--color-contrast-dk);
+    background: var(--color-secondary);
     color: var(--color-offwhite);
-    border: 2px solid var(--color-brand1);
+    border: 2px solid var(--color-primary-xlt);
   }
 }
 
@@ -141,7 +141,7 @@
 
 /* Map Controls */
 .button--map-control {
-  background: var(--color-contrast-dk);
+  background: var(--color-secondary);
   border-radius: 4px;
   padding: 6px;
   min-width: unset;
@@ -150,6 +150,6 @@
 }
 
 .button--map-control:hover {
-  background: var(--color-brand1-dk);
-  border-color: var(--color-brand1-dk);
+  background: var(--color-primary-lt);
+  border-color: var(--color-primary-lt);
 }
