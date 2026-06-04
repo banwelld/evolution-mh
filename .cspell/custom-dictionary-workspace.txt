@@ -18,3 +18,11 @@ Barranger
 #Class Names
 MHAUCC
 title__creds
+
+# Technical Terms
+oklch
+frontmatter
+geospatial
+contentful
+LCP
+GIS
