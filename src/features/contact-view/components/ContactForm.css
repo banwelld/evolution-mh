@@ -71,26 +71,39 @@
 
 .form__status {
   width: 100%;
-  padding: 1rem;
-  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  border-radius: var(--border-radius-tight);
   font-weight: 500;
   text-align: center;
-  animation: fadeIn 0.15s ease-out;
+  box-shadow: var(--shadow-lift);
+  animation: statusFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .form__status--loading {
-  background: var(--color-offwhite-lt);
-  color: var(--color-primary-xlt);
+  background: oklch(0.97 0.015 79.33);
+  border: 1px solid oklch(0.56 0.094 79.33 / 0.30);
+  color: oklch(0.45 0.07 79.33);
 }
 
 .form__status--success {
-  background: rgba(46, 204, 113, 0.1);
-  color: #27ae60;
-  border: 1px solid rgba(46, 204, 113, 0.4);
+  background: oklch(0.96 0.015 142);
+  border: 1px solid oklch(0.38 0.08 142 / 0.25);
+  color: oklch(0.38 0.08 142);
 }
 
 .form__status--error {
-  background: #fde8e8;
-  color: #c81e1e;
-  border-left: 4px solid #c81e1e;
+  background: oklch(0.965 0.015 28);
+  border: 1px solid oklch(0.42 0.12 28 / 0.25);
+  color: oklch(0.42 0.12 28);
+}
+
+@keyframes statusFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
