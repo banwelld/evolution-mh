@@ -42,12 +42,12 @@ entries:
 
       - **Good 2 Talk**:
 
-        **[call 1-866-925-5454](tel:+18669255454)** or **[text 686868](sms:686868)**
+        **[Call 1-866-925-5454](tel:+18669255454)** or **[text 686868](sms:686868)**
 
         Free and confidential mental health and substance use support services for post-secondary students in Ontario.
       - **Kid's Help Phone**:
 
-        **[call 1-800-668-6868](tel:+18006686868)** or **[text CONNECT to 686868](sms:686868?body=CONNECT)**
+        **[Call 1-800-668-6868](tel:+18006686868)** or **[text CONNECT to 686868](sms:686868?body=CONNECT)**
 
         24/7 e-mental health service offering free, multi-lingual, and confidential support to all young people across Canada. Professional counselling services are also available daily from 7:00 p.m. to midnight through live chat. To learn more, please visit [KidsHelpPhone.ca](https://kidshelpphone.ca/).
 
