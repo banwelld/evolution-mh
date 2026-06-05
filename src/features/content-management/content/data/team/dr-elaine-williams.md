@@ -14,6 +14,6 @@ In addition, I engage in community and professional development projects through
 
 I have experience assessing and treating a range of concerns including Autism Spectrum Disorder (in children, adolescents, and adults), intellectual and learning variations, Attention-Deficit Hyperactivity Disorder (ADHD) and other behavioural disorders, mood and anxiety related concerns, trauma, issues related to sexual behaviour, and other mental health concerns.
 
-I am a registered member of the College of Psychologists and Behaviour Analysts of Ontario (since 2009), before which I was a licensed psychologist in the states of both Florida and Michigan. After an undergraduate education in both Social Work and Psychology at Lakehead University, I completed my PH.D. in Clinical Psychology at Wayne State University. Throughout my career, I have trained and worked in community mental health, school, forensic, foster care, private practice and public not for profit settings.
+I am a registered member of the College of Psychologists and Behaviour Analysts of Ontario (since 2009), before which I was a licensed psychologist in the states of both Florida and Michigan. After an undergraduate education in both Social Work and Psychology at Lakehead University, I completed my Ph.D. in Clinical Psychology at Wayne State University. Throughout my career, I have trained and worked in community mental health, school, forensic, foster care, private practice and public not for profit settings.
 
 I look forward to joining you on your journey of self-discovery.
