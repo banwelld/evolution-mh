@@ -18,23 +18,21 @@ content:
         type: string
         required: true
       - name: credentials
-        label: Credentials (e.g. C.Psych)
+        label: Credentials (e.g. C.Psych.)
         type: string
       - name: sortOrder
-        label: Sort Order (Grid sequence)
+        label: Sort Order (Order of appearance)
         type: number
         default: 0
       - name: image
-        label: Card Image (.webp)
+        label: Card Image (.webp file)
         type: image
-        required: true
-        description: "Please select or upload a WebP format image."
+        description: "Please select a WebP format image."
       - name: imageDescription
-        label: Image Description (Alt Text)
+        label: Image Description (For people using screen readers)
         type: string
-        required: true
       - name: body
-        label: Biography (Bio text)
+        label: Biography
         type: rich-text
 
   - name: services
@@ -52,18 +50,16 @@ content:
         type: string
         required: true
       - name: sortOrder
-        label: Sort Order
+        label: Sort Order (Order of appearance)
         type: number
         default: 0
       - name: image
-        label: Card Image (.webp)
+        label: Card Image (.webp file)
         type: image
-        required: true
-        description: "Please select or upload a WebP format image."
+        description: "Please select a WebP format image."
       - name: imageDescription
-        label: Image Description (Alt Text)
+        label: Image Description (For people using screen readers)
         type: string
-        required: true
       - name: body
         label: Detailed Service Description
         type: rich-text
@@ -83,11 +79,11 @@ content:
         list: true
         fields:
           - name: summary
-            label: Question (Summary)
+            label: Question
             type: string
             required: true
           - name: details
-            label: Answer (Details)
+            label: Answer
             type: rich-text
             required: true
 
@@ -106,20 +102,6 @@ content:
             type: string
             required: true
           - name: details
-            label: Detailed Info (Markdown supported)
+            label: Detailed Info
             type: rich-text
             required: true
-
-  - name: quotes
-    label: Transition Quotes
-    type: collection
-    path: src/features/content-management/content/data/quotes
-    filename: "{slug}.md"
-    fields:
-      - name: source
-        label: Quote Source (Author)
-        type: string
-      - name: body
-        label: Quote Text
-        type: rich-text
-        required: true
