@@ -105,3 +105,6 @@ src/
 - **Sensitive Keys**: Never commit the `.env` file. It is ignored by Git by default to prevent leaking Web3Forms API keys.
 - **Static Assets**: Built assets in `/dist/assets` are ready to be served over CDN with Brotli or Gzip compression.
 
+## 📄 License
+
+This project is proprietary and all rights are reserved. You may view the source code for evaluation purposes (e.g., as part of a portfolio review), but you may not copy, distribute, or run the software without permission. See [LICENSE](LICENSE) for details.
