@@ -26,7 +26,7 @@ export default function Footer({ inert, config }) {
             className='footer__link'
             aria-label={`${engineerUiCredit} (opens in a new tab)`}
           >
-            <img src={logoSrc} alt='designer logo' className='footer__designer-logo' />
+            <img src={logoSrc} alt='' className='footer__designer-logo' />
             {engineerUiCredit}
           </a>
         </div>

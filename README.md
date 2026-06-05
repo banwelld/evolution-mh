@@ -11,8 +11,7 @@ A premium, trauma-informed single-page application platform for Evolution Mental
 - **Zod & Frontmatter Content Pipeline**: Fully validated Markdown compilation at build-time. Organizes team profiles, services, quotes, and FAQ accordions.
 - **Git-Based Pages CMS Integration**: Fully configured via `.pages.yml` with [Pages CMS](https://pagescms.org/), giving clients the freedom to seamlessly update team bios, service descriptions, and FAQ accordions through a visual UI.
 - **Serverless Form Submission**: Secure client contact form utilizing the Web3Forms API to route client email inquiries directly without a backend database. Integrates Zod schema constraints for runtime validation.
-- **Keyboard Shortcuts**: Pre-integrated developer utility (`Cmd + Opt + /` or `Ctrl + Opt + /`) to toggle the client-facing "Coming Soon" splash layout for rapid live-stage previewing.
-
+- **Keyboard Shortcuts**: Escape key closes the active overlay (menu or article).
 
 ## 🏗️ Tech Stack & Dependencies
 
