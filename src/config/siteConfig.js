@@ -2,7 +2,6 @@ export const siteConfig = {
   // Global App Settings
   global: {
     brandName: 'Evolution Mental Health Services',
-    comingSoonText: ['', 'Coming Soon', ''],
 
     // UI Defaults
     ui: {

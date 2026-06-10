@@ -11,7 +11,6 @@ export default function HeroLayout({
   heroImageRef,
   contentRef,
   isMobile,
-  isComingSoon,
 }) {
   const { imageAltText, logoAltText, callToActionArr, buttonConfig = [] } = config;
   return (
@@ -28,19 +27,17 @@ export default function HeroLayout({
 
         {!isMobile && <CallToAction callToActionArr={callToActionArr} />}
 
-        {!isComingSoon && (
-          <ContainerFrame modifier='option-buttons'>
-            {buttonConfig.map((button) => (
-              <Button
-                key={button.label}
-                modifiers={button.modifiers}
-                label={button.label}
-                onClick={(e) => onClick(e, button.clickParam)}
-                aria-label={button.aria}
-              />
-            ))}
-          </ContainerFrame>
-        )}
+        <ContainerFrame modifier='option-buttons'>
+          {buttonConfig.map((button) => (
+            <Button
+              key={button.label}
+              modifiers={button.modifiers}
+              label={button.label}
+              onClick={(e) => onClick(e, button.clickParam)}
+              aria-label={button.aria}
+            />
+          ))}
+        </ContainerFrame>
       </ContainerFrame>
     </SectionFrame>
   );

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useMatch, useNavigate } from 'react-router-dom';
 import ArticleView from '../features/article-view/ArticleView';
 import parseCatalog from '../features/article-view/catalogData';
@@ -14,7 +14,7 @@ const SliderState = Object.freeze({
 
 export default function App() {
   const [activeOverlay, setActiveOverlay] = useState(SliderState.IDLE);
-  const [isComingSoon, setIsComingSoon] = useState(true);
+  const lastActiveElementRef = useRef(null);
 
   const matchTeam = useMatch('/team/:id');
   const matchService = useMatch('/service/:id');
@@ -40,12 +40,11 @@ export default function App() {
     });
   }
 
-  const derivedState =
-    selectedArticle && !isComingSoon
-      ? SliderState.ARTICLE
-      : activeOverlay === SliderState.MENU
-        ? SliderState.MENU
-        : SliderState.IDLE;
+  const derivedState = selectedArticle
+    ? SliderState.ARTICLE
+    : activeOverlay === SliderState.MENU
+      ? SliderState.MENU
+      : SliderState.IDLE;
 
   const toggleSlider = useCallback(
     (payload = SliderState.IDLE) => {
@@ -76,11 +75,6 @@ export default function App() {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      // Toggle Coming Soon Screen (Cmd + Opt + /)
-      if ((e.metaKey || e.ctrlKey) && e.altKey && e.code === 'Slash') {
-        setIsComingSoon((prev) => !prev);
-      }
-
       if (e.key === 'Escape') {
         toggleSlider(SliderState.IDLE);
       }
@@ -89,34 +83,48 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [toggleSlider]);
 
+  // Track and restore focus for accessibility (a11y)
+  useEffect(() => {
+    if (derivedState !== SliderState.IDLE) {
+      if (!lastActiveElementRef.current && document.activeElement) {
+        lastActiveElementRef.current = document.activeElement;
+      }
+
+      requestAnimationFrame(() => {
+        const triggerBtn = document.querySelector('.app-slider__trigger button');
+        if (triggerBtn) {
+          triggerBtn.focus();
+        }
+      });
+    } else {
+      if (lastActiveElementRef.current) {
+        const elementToFocus = lastActiveElementRef.current;
+        lastActiveElementRef.current = null;
+
+        requestAnimationFrame(() => {
+          if (elementToFocus && typeof elementToFocus.focus === 'function') {
+            elementToFocus.focus();
+          }
+        });
+      }
+    }
+  }, [derivedState]);
+
   const toggleMap = {
     [SliderState.ARTICLE]: () => toggleSlider(SliderState.IDLE),
     [SliderState.IDLE]: () => toggleSlider(SliderState.MENU),
     [SliderState.MENU]: () => toggleSlider(SliderState.IDLE),
+    closeSlider: () => toggleSlider(SliderState.IDLE),
   };
 
+  const getActiveClass = (state) => (state !== SliderState.IDLE ? `${state}-is-active` : '');
+
   return (
-    <div
-      className={`app-root ${
-        [SliderState.MENU, SliderState.ARTICLE].includes(derivedState) &&
-        `${derivedState}-is-active`
-      }`}
-    >
-      {!isComingSoon && (
-        <>
-          <SliderTrigger sliderState={derivedState} onClick={toggleMap[derivedState]} />
-          <ArticleView
-            selectedArticle={selectedArticle}
-            inert={derivedState !== SliderState.ARTICLE}
-          />
-          <SiteNav
-            onToggle={() => toggleSlider(SliderState.IDLE)}
-            inert={derivedState === SliderState.ARTICLE}
-          />
-        </>
-      )}
+    <div className={`app-root ${getActiveClass(derivedState)}`}>
+      <SliderTrigger sliderState={derivedState} onClick={toggleMap[derivedState]} />
+      <ArticleView selectedArticle={selectedArticle} inert={derivedState !== SliderState.ARTICLE} />
+      <SiteNav onToggle={toggleMap.closeSlider} inert={derivedState === SliderState.ARTICLE} />
       <AppLayout
-        isComingSoon={isComingSoon}
         onToggle={toggleSlider}
         menuOpen={derivedState === SliderState.MENU}
         inert={derivedState !== SliderState.IDLE}

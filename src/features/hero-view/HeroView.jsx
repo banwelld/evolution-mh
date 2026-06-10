@@ -4,7 +4,7 @@ import logo from './assets/company-logo.webp';
 import heroImage from './assets/hero-image.webp';
 import HeroLayout from './components/HeroLayout';
 
-export default function HeroView({ config, isComingSoon }) {
+export default function HeroView({ config }) {
   const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 640px)').matches);
   const onClick = useSmoothScroll(0);
   const heroImageRef = useRef(null);
@@ -45,7 +45,6 @@ export default function HeroView({ config, isComingSoon }) {
     isMobile,
     heroImageRef,
     contentRef,
-    isComingSoon,
     onClick,
     heroImage,
     logo,
